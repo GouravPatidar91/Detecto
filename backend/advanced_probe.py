@@ -1,9 +1,21 @@
 import re
-import httpx
-from bs4 import BeautifulSoup
 from urllib.parse import urlparse
 from typing import Dict, Any, Optional, Tuple
 from backend.typosquatting import PROTECTED_BRANDS, extract_registered_domain
+
+try:
+    import httpx
+    HAS_HTTPX = True
+except ImportError:
+    httpx = None
+    HAS_HTTPX = False
+
+try:
+    from bs4 import BeautifulSoup
+    HAS_BS4 = True
+except ImportError:
+    BeautifulSoup = None
+    HAS_BS4 = False
 
 SHORTENER_HOSTS = {
     "bit.ly", "goo.gl", "tinyurl.com", "t.co", "ow.ly", "is.gd", "buff.ly",
@@ -18,7 +30,7 @@ def unwrap_shortener(url: str, timeout_sec: float = 0.5) -> Tuple[str, bool, int
     parsed = urlparse(url)
     hostname = (parsed.hostname or "").lower()
 
-    if hostname not in SHORTENER_HOSTS:
+    if not HAS_HTTPX or hostname not in SHORTENER_HOSTS:
         return url, False, 0
 
     try:
@@ -46,6 +58,8 @@ def inspect_dom_and_brand(url: str, hostname: str, timeout_sec: float = 0.6) -> 
         "dom_risk_penalty": 0.0,
         "dom_finding": None
     }
+    if not HAS_HTTPX or not HAS_BS4:
+        return result
 
     try:
         headers = {
