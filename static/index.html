@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detecto — AI Malicious URL Detection Platform</title>
+  <meta name="description" content="Playful Geometric AI Malicious URL and Phishing Detection System. SCSIT DAVV Academic Major Project by Mohammad Umar Ansari & Ankit Singh.">
+  
+  <!-- Playful Geometric Typography: Host Grotesk & Instrument Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,600;0,700;0,800;1,700&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+
+  <div class="site-wrapper">
+    <!-- 1. NAVIGATION BAR (Transparent, sitting directly on warm paper) -->
+    <header class="navbar">
+      <a href="#hero" class="nav-brand">
+        <div class="brand-logo-squircle" aria-hidden="true">
+          <span class="brand-dot"></span>
+          <span class="brand-dot"></span>
+          <span class="brand-dot"></span>
+          <span class="brand-dot"></span>
+        </div>
+        <span class="brand-name">Detecto</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Main Navigation">
+        <a href="#architecture">Architecture</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#benefits">Benefits</a>
+        <a href="#comparison">Comparison</a>
+        <a href="#scanner">Scanner</a>
+        <a href="#faq">FAQs</a>
+        <a href="#attribution">Credits</a>
+      </nav>
+
+      <div class="nav-badge-circles">
+        <div class="three-dots-pill" title="Playful Geometric Accents" aria-hidden="true">
+          <span class="circle-dot"></span>
+          <span class="circle-dot"></span>
+          <span class="circle-dot"></span>
+        </div>
+        <a href="#scanner" class="btn-nav-cta">Launch Scanner ↗</a>
+      </div>
+    </header>
+
+    <!-- 2. HERO SECTION (Wider text column beside authentic shape assembly) -->
+    <section class="hero-section" id="hero">
+      <div class="hero-content">
+        <h1 class="hero-title">
+          Real-Time Web Threat Detection <span class="text-violet">Powered by AI</span>.
+        </h1>
+
+        <p class="hero-subtitle">
+          Detecto classifies zero-day phishing, typosquatting variants, brand impersonation, and malware distribution links in milliseconds—without relying on outdated static blacklists.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#scanner" class="btn-primary-action">
+            <span>Analyze a Live URL</span>
+            <span aria-hidden="true">↗</span>
+          </a>
+          <a href="#how-it-works" class="btn-secondary-action">
+            <span>Explore Architecture</span>
+            <span aria-hidden="true">▷</span>
+          </a>
+        </div>
+
+        <div class="hero-social-proof">
+          <span class="status-dot-mint" aria-hidden="true"></span>
+          <span>SCSIT DAVV Major Project · Submitted by <strong>Mohammad Umar Ansari (2411920)</strong> &amp; <strong>Ankit Singh (2411906)</strong></span>
+        </div>
+      </div>
+
+      <!-- Static Assembly of Colorful Geometric Shapes (Notepad grid card, smiling arch, chart, smiley) -->
+      <div class="hero-shapes-assembly" aria-hidden="true">
+        <div class="assembly-canvas-box">
+          <!-- 1. Grid Notebook Card Base -->
+          <div class="assembly-grid-backdrop"></div>
+
+          <!-- 2. Violet Arch with Smiling Face -->
+          <div class="assembly-violet-arch">
+            <div class="arch-face">
+              <div class="face-eyes">
+                <span class="eye"></span>
+                <span class="eye"></span>
+              </div>
+              <div class="face-smile"></div>
+            </div>
+          </div>
+
+          <!-- 3. Mint Card with Bars and Amber Checkmark Badge -->
+          <div class="assembly-mint-card">
+            <div class="mint-card-bar-1"></div>
+            <div class="mint-card-bar-2"></div>
+            <div class="mint-card-check-badge">✓</div>
+          </div>
+
+          <!-- 4. Pink Analytics Card with Line Chart & Bar Chart -->
+          <div class="assembly-pink-card">
+            <svg class="pink-chart-svg" viewBox="0 0 100 80" fill="none" stroke="#252b3a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <!-- Trend Line -->
+              <polyline points="10,35 35,15 65,40 90,20" />
+              <!-- Bars -->
+              <rect x="15" y="45" width="14" height="25" fill="#ffffff" rx="3" />
+              <rect x="42" y="32" width="14" height="38" fill="#ffffff" rx="3" />
+              <rect x="70" y="22" width="14" height="48" fill="#ffffff" rx="3" />
+            </svg>
+          </div>
+
+          <!-- 5. Yellow Smiley Circle with Purple Star Badge -->
+          <div class="assembly-yellow-circle">
+            <div class="yellow-eyes">
+              <span class="yellow-eye"></span>
+              <span class="yellow-eye"></span>
+            </div>
+            <div class="yellow-smile"></div>
+            <div class="yellow-star-badge">★</div>
+          </div>
+
+          <!-- 6. Decorative Sparkles & Ticks -->
+          <span class="assembly-spark-pink">✦</span>
+          <span class="assembly-tick-1"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. FACT STRIP (Layered Mint Base with Outlined White Card) -->
+    <section class="fact-strip-section" aria-label="Key Performance Indicators">
+      <div class="fact-strip-mint-base"></div>
+      <div class="fact-strip-white-card">
+        <div class="fact-item">
+          <div class="fact-shape shape-pink-circle" aria-hidden="true"></div>
+          <div class="fact-texts">
+            <span class="fact-number" id="statTotalScans">0</span>
+            <span class="fact-label">Scans Completed</span>
+            <span class="fact-subtext">Across test sessions</span>
+          </div>
+        </div>
+
+        <div class="fact-item">
+          <div class="fact-shape shape-mint-arch" aria-hidden="true"></div>
+          <div class="fact-texts">
+            <span class="fact-number" id="statSafeCount">0</span>
+            <span class="fact-label">Verified Safe</span>
+            <span class="fact-subtext">Legitimate domains</span>
+          </div>
+        </div>
+
+        <div class="fact-item">
+          <div class="fact-shape shape-violet-star" aria-hidden="true">★</div>
+          <div class="fact-texts">
+            <span class="fact-number" id="statMaliciousCount">0</span>
+            <span class="fact-label">Threats Blocked</span>
+            <span class="fact-subtext">Zero-day phishing</span>
+          </div>
+        </div>
+
+        <div class="fact-item">
+          <div class="fact-shape shape-amber-stone" aria-hidden="true"></div>
+          <div class="fact-texts">
+            <span class="fact-number" id="statSuspiciousCount">0</span>
+            <span class="fact-label">Suspicious Flagged</span>
+            <span class="fact-subtext">Requires caution</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. SHARED WHITE BOOK SHAPE (With Violet Offset Backing & Tilted Pink Tab) -->
+    <section class="book-wrapper" id="architecture">
+      <!-- Tilted Pink Tab -->
+      <div class="book-tab-tilted" aria-hidden="true">Core Platform</div>
+
+      <div class="white-book-container">
+        <div class="book-header">
+          <h2 class="book-title">Everything you need to inspect &amp; protect</h2>
+          <p class="book-subtitle">
+            Detecto combines high-dimensional lexical heuristics, real-time DNS telemetry, and trained machine learning classifiers into a unified defense architecture.
+          </p>
+        </div>
+
+        <!-- 6-Feature Grid with Dashed Dividers -->
+        <div class="book-features-grid">
+          <div class="book-feature-cell">
+            <div class="cell-icon-badge icon-mint">⚡</div>
+            <h3>27 Feature Vectors</h3>
+            <p>Calculates Shannon entropy, domain depth, character distributions, sensitive action keywords, and structural path ratios in sub-milliseconds.</p>
+          </div>
+
+          <div class="book-feature-cell">
+            <div class="cell-icon-badge icon-amber">🛡️</div>
+            <h3>Typosquatting Defense</h3>
+            <p>Calculates Levenshtein edit distance and homoglyph substitutions across 20+ protected corporate brands to prevent phishing spoofing.</p>
+          </div>
+
+          <div class="book-feature-cell">
+            <div class="cell-icon-badge icon-pink">🌐</div>
+            <h3>Cloudflare 1.1.1.1 DNS</h3>
+            <p>Queries authoritative DNS resolvers directly via UDP sockets without Windows OS blocking, resolving active live hosts in ~45ms.</p>
+          </div>
+
+          <div class="book-feature-cell">
+            <div class="cell-icon-badge icon-violet">🌲</div>
+            <h3>Random Forest Classifier</h3>
+            <p>Trained on 30,000 real-world benign and malicious URLs with 100 decision trees to output calibrated risk probability scores.</p>
+          </div>
+
+          <div class="book-feature-cell">
+            <div class="cell-icon-badge icon-mint">🔍</div>
+            <h3>Credential Sniffing Probe</h3>
+            <p>Streams the initial 35KB of HTML to identify deceptive password forms and suspicious login titles hosted on non-authentic servers.</p>
+          </div>
+
+          <div class="book-feature-cell">
+            <div class="cell-icon-badge icon-amber">🔄</div>
+            <h3>Shortener Unwrapping</h3>
+            <p>Transparently traces HTTP 301/302 redirection chains from services like bit.ly and tinyurl to reveal hidden destination targets.</p>
+          </div>
+        </div>
+
+        <!-- Editorial Silhouette Row -->
+        <div class="editorial-silhouette-row">
+          <div class="editorial-card">
+            <div class="silhouette-frame silhouette-arch">
+              <span>99.4% Accuracy</span>
+            </div>
+            <span class="editorial-tag">Machine Learning</span>
+            <h4>Zero-Day Detection Without Static Delay</h4>
+          </div>
+
+          <div class="editorial-card">
+            <div class="silhouette-frame silhouette-squircle">
+              <span>Sub-Second Inference</span>
+            </div>
+            <span class="editorial-tag">Network Engine</span>
+            <h4>Direct DNS &amp; TLS Handshake Verification</h4>
+          </div>
+
+          <div class="editorial-card">
+            <div class="silhouette-frame silhouette-dome">
+              <span>Local SQLite Privacy</span>
+            </div>
+            <span class="editorial-tag">Data Security</span>
+            <h4>Zero-Telemetry Leakage Audit Logging</h4>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. NUMBERED PROCESS STRIP ("How Detecto Works") -->
+    <section class="process-section" id="how-it-works">
+      <div class="process-header-row">
+        <div>
+          <h2>How Detecto works</h2>
+        </div>
+        <div class="process-header-sub">
+          <span>Deconstruct, vectorise, verify, and classify in sub-seconds.</span>
+        </div>
+      </div>
+
+      <div class="process-strip-container">
+        <div class="process-horizontal-line" aria-hidden="true"></div>
+        <div class="process-steps-row">
+          <div class="process-step-col">
+            <div class="step-number-badge badge-amber">1</div>
+            <h3>Lexical &amp; Structural Parsing</h3>
+            <p>The URL is segmented into scheme, host, path, and query. Shannon entropy and symbol counts are extracted immediately.</p>
+          </div>
+
+          <div class="process-step-col">
+            <div class="step-number-badge badge-pink">2</div>
+            <h3>Typosquatting Distance Check</h3>
+            <p>Domain tokens are evaluated against protected high-value targets (PayPal, Apple, Google) for lookalike characters.</p>
+          </div>
+
+          <div class="process-step-col">
+            <div class="step-number-badge badge-mint">3</div>
+            <h3>Fast Network Telemetry</h3>
+            <p>Non-blocking DNS queries to 1.1.1.1 and 8.8.8.8 verify host existence, IP reputation, and valid SSL TLS certificates.</p>
+          </div>
+
+          <div class="process-step-col">
+            <div class="step-number-badge badge-violet">4</div>
+            <h3>Ensemble Model Verdict</h3>
+            <p>All 27 vectors pass through the 100-tree Random Forest to output a calibrated risk score: Safe, Suspicious, or Malicious.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. BENEFITS SHARED PALE-MINT PANEL ("Why Teams Choose Detecto") -->
+    <section class="benefits-panel-section" id="benefits">
+      <div class="benefits-top-pill" aria-hidden="true"></div>
+
+      <div class="benefits-layout-grid">
+        <div class="benefits-brand-col">
+          <h2>Why security teams choose Detecto</h2>
+          <!-- Cluster of 4 Overlapping Shapes from designprompts.dev -->
+          <div class="shapes-cluster" aria-hidden="true">
+            <div class="cluster-shape cl-violet"></div>
+            <div class="cluster-shape cl-pink"></div>
+            <div class="cluster-shape cl-amber"></div>
+            <div class="cluster-shape cl-mint"></div>
+          </div>
+        </div>
+
+        <div class="benefits-items-grid">
+          <div class="benefit-block">
+            <div class="check-circle-icon" aria-hidden="true">✓</div>
+            <h3>Save time and bandwidth</h3>
+            <p>Direct DNS probing resolves active hosts in 45ms, eliminating multi-second Windows NetBIOS timeouts on phishing links.</p>
+          </div>
+
+          <div class="benefit-block">
+            <div class="check-circle-icon" aria-hidden="true">✓</div>
+            <h3>Zero-day resilience</h3>
+            <p>Identifies brand-new phishing domains created minutes ago that have not yet appeared on central security blacklists.</p>
+          </div>
+
+          <div class="benefit-block">
+            <div class="check-circle-icon" aria-hidden="true">✓</div>
+            <h3>Complete data privacy</h3>
+            <p>All scans and telemetry are processed locally and stored in your private SQLite database without third-party analytics leaks.</p>
+          </div>
+
+          <div class="benefit-block">
+            <div class="check-circle-icon" aria-hidden="true">✓</div>
+            <h3>Actionable audit reports</h3>
+            <p>Instantly export full diagnostic summaries to clipboard, downloadable structured JSON, or print-ready PDF reports.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. COMPARISON TICKETS (The Cybersecurity Dilemma) -->
+    <section class="comparison-section" id="comparison">
+      <div class="comparison-header-row">
+        <div class="comparison-titles">
+          <h2>Compare defense approaches</h2>
+          <p>Choose the security architecture that protects your users against zero-day campaigns.</p>
+        </div>
+
+        <div class="comparison-note-card">
+          <div class="note-pink-circle" aria-hidden="true"></div>
+          <p>Continuous AI inference detects attacks before central databases can update.</p>
+        </div>
+      </div>
+
+      <div class="tickets-stack">
+        <!-- Ticket 1: Traditional Static Blacklists -->
+        <div class="ticket-card">
+          <div class="ticket-left-col">
+            <span class="ticket-badge-tag">Legacy Approach</span>
+            <h3>Static Blacklists</h3>
+            <span class="ticket-summary">Traditional domain &amp; IP database lookups</span>
+            <span class="ticket-price-bold">Hours-Long Delay</span>
+          </div>
+
+          <div class="ticket-center-features">
+            <div class="feature-check-item item-negative">
+              <span class="check-symbol">✕</span> <span>No zero-day protection</span>
+            </div>
+            <div class="feature-check-item">
+              <span class="check-symbol">✓</span> <span>Known malware lists</span>
+            </div>
+            <div class="feature-check-item item-negative">
+              <span class="check-symbol">✕</span> <span>Vulnerable to domain rotation</span>
+            </div>
+            <div class="feature-check-item">
+              <span class="check-symbol">✓</span> <span>Low server compute</span>
+            </div>
+            <div class="feature-check-item item-negative">
+              <span class="check-symbol">✕</span> <span>High manual upkeep</span>
+            </div>
+            <div class="feature-check-item item-negative">
+              <span class="check-symbol">✕</span> <span>No lexical heuristics</span>
+            </div>
+          </div>
+
+          <div class="ticket-right-action">
+            <div class="action-shape-mint-circle" aria-hidden="true"></div>
+            <button type="button" class="btn-ticket-secondary" disabled>Legacy System</button>
+          </div>
+        </div>
+
+        <!-- Ticket 2 (Selected): Detecto AI Intelligent Engine -->
+        <div class="ticket-card ticket-selected-pro">
+          <div class="ticket-left-col">
+            <span class="ticket-badge-tag">Recommended</span>
+            <h3>Detecto AI Engine</h3>
+            <span class="ticket-summary">Real-time machine learning &amp; telemetry classification</span>
+            <span class="ticket-price-bold">Sub-Second Live</span>
+          </div>
+
+          <div class="ticket-center-features">
+            <div class="feature-check-item">
+              <span class="check-symbol">✓</span> <span>27 Vectorized heuristics</span>
+            </div>
+            <div class="feature-check-item">
+              <span class="check-symbol">✓</span> <span>Cloudflare 1.1.1.1 DNS</span>
+            </div>
+            <div class="feature-check-item">
+              <span class="check-symbol">✓</span> <span>Zero-day pattern detection</span>
+            </div>
+            <div class="feature-check-item">
+              <span class="check-symbol">✓</span> <span>SSL certificate validation</span>
+            </div>
+            <div class="feature-check-item">
+              <span class="check-symbol">✓</span> <span>Brand typosquatting filter</span>
+            </div>
+            <div class="feature-check-item">
+              <span class="check-symbol">✓</span> <span>Private SQLite audit logs</span>
+            </div>
+          </div>
+
+          <div class="ticket-right-action">
+            <div class="action-shape-violet-pebble" aria-hidden="true"></div>
+            <a href="#scanner" class="btn-ticket-primary">Active Engine ✓</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. LIVE URL THREAT SCANNER CONSOLE -->
+    <section class="scanner-section" id="scanner">
+      <div class="scanner-main-card">
+        <div class="scanner-title-row">
+          <h2>Live URL Threat Scanner</h2>
+          <p>Inspect any web link in real-time to generate instant classification verdicts and network diagnostics.</p>
+        </div>
+
+        <form class="scan-form" id="scanForm">
+          <div class="search-bar-wrap">
+            <input 
+              type="text" 
+              class="search-input-field" 
+              id="urlInput" 
+              placeholder="Paste or enter any URL (e.g., https://example.com or suspicious link)..." 
+              required 
+              autocomplete="off" 
+              spellcheck="false"
+              aria-label="Target URL to inspect"
+            />
+            <button type="button" class="btn-clear-input" id="btnClear" title="Clear input" aria-label="Clear input">✕</button>
+            <button type="submit" class="btn-analyze-submit" id="btnScan">
+              <span class="btn-text">Analyze URL ↗</span>
+              <span class="spinner-icon" id="scanSpinner" aria-hidden="true"></span>
+            </button>
+          </div>
+
+          <div class="scan-options-row">
+            <label class="clean-toggle-label">
+              <input type="checkbox" id="liveProbeToggle" checked>
+              <span class="toggle-switch-track"></span>
+              <span>Enable Live Network Inspection (DNS &amp; SSL Handshake)</span>
+            </label>
+          </div>
+        </form>
+
+        <!-- Quick Sample Test Pills -->
+        <div class="sample-pills-row">
+          <span class="pills-heading">Quick Test Cases:</span>
+          <button type="button" class="pill-btn pill" data-url="https://github.com/torvalds/linux">github.com (Safe)</button>
+          <button type="button" class="pill-btn pill" data-url="https://en.wikipedia.org/wiki/Computer_security">wikipedia.org (Safe)</button>
+          <button type="button" class="pill-btn pill" data-url="https://microsoft.com">microsoft.com (Allowlist)</button>
+          <button type="button" class="pill-btn pill pill-alert" data-url="http://paypa1-security-verification.xyz/login">paypa1.xyz (Typosquat)</button>
+          <button type="button" class="pill-btn pill pill-alert" data-url="http://apple-secure-verify.com/signin">apple-verify.com (Brand Phish)</button>
+          <button type="button" class="pill-btn pill pill-alert" data-url="http://192.168.1.100:8080/paypal/login-verification.php?client_id=89201">Raw IP Phish</button>
+        </div>
+      </div>
+
+      <!-- Scan Results Container & Security Audit Report -->
+      <div class="results-container hidden" id="resultsSection">
+        <div class="report-toolbar">
+          <div class="report-tag-text">
+            <span>📋</span>
+            <span>Security Audit Report</span>
+          </div>
+          <div class="report-export-buttons">
+            <button type="button" class="btn-report-action" id="btnCopyReport" title="Copy clean summary to clipboard">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+              <span>Copy Summary</span>
+            </button>
+            <button type="button" class="btn-report-action" id="btnExportJson" title="Download report as JSON file">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              <span>Export JSON</span>
+            </button>
+            <button type="button" class="btn-report-action" id="btnPrintReport" title="Print or save as PDF">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                <rect x="6" y="14" width="12" height="8"></rect>
+              </svg>
+              <span>Print / PDF</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="result-card-box" id="printableReport">
+          <!-- Verdict Header Row -->
+          <div class="verdict-header-row">
+            <div class="verdict-info-col">
+              <div class="verdict-badge-box" id="verdictBadge">
+                <span id="verdictIcon">🛡️</span>
+                <span id="verdictText">VERIFIED SAFE</span>
+              </div>
+              <h3 class="target-url-string" id="resultUrl">https://example.com</h3>
+              <p class="target-status-msg" id="resultMessage">Analysis complete.</p>
+            </div>
+
+            <!-- Risk Score Gauge -->
+            <div class="gauge-col">
+              <div class="gauge-svg-wrap">
+                <svg viewBox="0 0 100 100">
+                  <circle class="gauge-track" cx="50" cy="50" r="42"></circle>
+                  <circle class="gauge-value-arc" id="gaugeFill" cx="50" cy="50" r="42"></circle>
+                </svg>
+                <div class="gauge-text-center">
+                  <span class="gauge-score-digits" id="riskScoreValue">0%</span>
+                  <span class="gauge-score-label">Risk Score</span>
+                </div>
+              </div>
+              <span class="confidence-chip" id="confidenceTag">Confidence: 100%</span>
+            </div>
+          </div>
+
+          <!-- Redirect Alert -->
+          <div class="redirect-box hidden" id="redirectBanner">
+            <span>🔄</span>
+            <span><strong>Shortener Unwrapped:</strong> Initial link redirected to <code id="redirectFinalUrl"></code></span>
+          </div>
+
+          <!-- Telemetry Cards -->
+          <div class="telemetry-cards-row">
+            <div class="tel-stat-card">
+              <span class="tel-label-text">DNS Resolution</span>
+              <span class="tel-val-text" id="dnsStatus">Checking...</span>
+            </div>
+            <div class="tel-stat-card">
+              <span class="tel-label-text">SSL Encryption</span>
+              <span class="tel-val-text" id="sslStatus">Checking...</span>
+            </div>
+            <div class="tel-stat-card">
+              <span class="tel-label-text">Typosquatting</span>
+              <span class="tel-val-text" id="typosquatStatus">None</span>
+            </div>
+            <div class="tel-stat-card">
+              <span class="tel-label-text">Password Form</span>
+              <span class="tel-val-text" id="domFormStatus">None</span>
+            </div>
+          </div>
+
+          <!-- Key Diagnostic Findings -->
+          <div class="findings-panel">
+            <h4 class="findings-title">Key Diagnostic Findings</h4>
+            <ul class="findings-items-list" id="reasonsList">
+              <!-- Dynamically populated -->
+            </ul>
+          </div>
+
+          <!-- Machine Learning Feature Breakdown Disclosure -->
+          <details class="feature-disclosure">
+            <summary class="feature-disclosure-summary">
+              <span>Machine Learning Feature Breakdown (27 Vectorized Attributes)</span>
+              <span>▾</span>
+            </summary>
+            <div class="table-responsive-wrap">
+              <table class="clean-matrix-table">
+                <thead>
+                  <tr>
+                    <th>Feature Key</th>
+                    <th>Value</th>
+                    <th>Structural Significance</th>
+                  </tr>
+                </thead>
+                <tbody id="featuresTableBody">
+                  <!-- Dynamically populated -->
+                </tbody>
+              </table>
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <!-- Scan History Audit Log Card -->
+      <div class="history-section-card">
+        <div class="history-card-header">
+          <div>
+            <h2>Scan Activity Audit Log</h2>
+            <p style="color: #64748b; font-size: 0.95rem; margin-top: 0.25rem;">Persisted locally in SQLite database</p>
+          </div>
+          <div class="history-controls">
+            <select id="filterSelect" class="select-dropdown" aria-label="Filter by verdict">
+              <option value="">All Verdicts</option>
+              <option value="Safe">Safe Only</option>
+              <option value="Suspicious">Suspicious Only</option>
+              <option value="Malicious">Malicious Only</option>
+            </select>
+            <button type="button" class="btn-danger-outline" id="btnClearHistory">Clear All Records</button>
+          </div>
+        </div>
+
+        <div class="table-responsive-wrap">
+          <table class="history-table-grid">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Target URL</th>
+                <th>Status</th>
+                <th>Risk Score</th>
+                <th>DNS</th>
+                <th>SSL</th>
+                <th>Timestamp</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="historyTableBody">
+              <tr>
+                <td colspan="8" style="text-align: center; color: #64748b; padding: 2.5rem; font-style: italic;">
+                  No scans recorded yet. Enter a URL above to inspect.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8.5 FREQUENTLY ASKED QUESTIONS (FAQ SECTION) -->
+    <section class="faq-section" id="faq" aria-label="Frequently Asked Questions">
+      <div class="faq-header-col">
+        <div>
+          <span class="ticket-badge-tag" style="margin-bottom: 0.75rem;">Clear Answers</span>
+          <h2>Frequently asked questions</h2>
+        </div>
+        <p>Everything you need to know about Detecto, zero-day threat detection, machine learning, and academic project background—in simple English.</p>
+        
+        <div class="faq-question-badge" aria-hidden="true">?</div>
+      </div>
+
+      <div class="faq-stack">
+        <!-- Q1 -->
+        <details class="faq-details" open>
+          <summary class="faq-summary">
+            <span class="faq-summary-text">What is Detecto and how does it protect me from dangerous links?</span>
+            <span class="faq-toggle-btn" aria-hidden="true">+</span>
+          </summary>
+          <div class="faq-answer-body">
+            <p><strong>Detecto is an AI-powered cybersecurity scanner</strong> that checks whether a website link (URL) is safe, suspicious, or malicious before you click it.</p>
+            <p>Traditional security tools rely on "blacklists" of already-known bad links. The problem? Cybercriminals create millions of temporary phishing links that vanish within hours—long before blacklists update. Detecto inspects the mathematical DNA and network behavior of the link in milliseconds to block brand-new (zero-day) scams on the spot.</p>
+          </div>
+        </details>
+
+        <!-- Q2 -->
+        <details class="faq-details">
+          <summary class="faq-summary">
+            <span class="faq-summary-text">How does Detecto check a link in milliseconds without freezing?</span>
+            <span class="faq-toggle-btn" aria-hidden="true">+</span>
+          </summary>
+          <div class="faq-answer-body">
+            <p>Standard Windows DNS lookups can freeze for 5 to 10 seconds if a domain doesn't exist (due to operating system NetBIOS/LLMNR timeouts).</p>
+            <p>Detecto bypasses slow OS lookups by sending direct, lightweight UDP queries to fast public DNS resolvers (<strong>Cloudflare 1.1.1.1</strong> and <strong>Google 8.8.8.8</strong>). This returns a real DNS answer in just <strong>45 milliseconds</strong> and never freezes your browser.</p>
+          </div>
+        </details>
+
+        <!-- Q3 -->
+        <details class="faq-details">
+          <summary class="faq-summary">
+            <span class="faq-summary-text">What are the 27 "features" extracted from a URL?</span>
+            <span class="faq-toggle-btn" aria-hidden="true">+</span>
+          </summary>
+          <div class="faq-answer-body">
+            <p>Features are 27 structural and linguistic clues calculated directly from the URL string. They include:</p>
+            <p>• <strong>Length &amp; Depth:</strong> Total character length, hostname length, path depth, and number of subdomains.<br>
+            • <strong>Symbol Counters:</strong> Counts of hyphens, dots, underscores, question marks, and <code>@</code> credential trick symbols.<br>
+            • <strong>Digit Ratios:</strong> The percentage of numbers versus letters (phishing links often use long random number sequences).<br>
+            • <strong>Shannon Entropy:</strong> A mathematical formula measuring character randomness.<br>
+            • <strong>Suspicious Keywords:</strong> Matches for sensitive terms like <code>login</code>, <code>verify</code>, <code>banking</code>, <code>secure</code>, and <code>wallet</code>.</p>
+          </div>
+        </details>
+
+        <!-- Q4 -->
+        <details class="faq-details">
+          <summary class="faq-summary">
+            <span class="faq-summary-text">What is Shannon Entropy and why does randomness indicate a threat?</span>
+            <span class="faq-toggle-btn" aria-hidden="true">+</span>
+          </summary>
+          <div class="faq-answer-body">
+            <p>Think of <strong>entropy</strong> as a "scramble meter."</p>
+            <p>Legitimate organizations select memorable, human-readable names like <code>google.com</code> or <code>wikipedia.org</code> which have low randomness. In contrast, automated phishing kits and malware command-and-control servers generate scrambled strings like <code>a7x9q-sec-auth.xyz</code>. A high entropy score immediately alerts Detecto to possible automated threat behavior.</p>
+          </div>
+        </details>
+
+        <!-- Q5 -->
+        <details class="faq-details">
+          <summary class="faq-summary">
+            <span class="faq-summary-text">How does Detecto catch brand typosquatting (e.g. paypa1.xyz or apple-verify.com)?</span>
+            <span class="faq-toggle-btn" aria-hidden="true">+</span>
+          </summary>
+          <div class="faq-answer-body">
+            <p>Detecto maintains a database of 20+ protected brands (PayPal, Apple, Google, Microsoft, Netflix, Steam, Amazon, etc.).</p>
+            <p>When you scan a domain, Detecto runs <strong>Levenshtein Edit Distance</strong> (counting letter additions, deletions, or swaps) and <strong>Homoglyph Detection</strong> (detecting numbers like <code>1</code> instead of <code>l</code>, or <code>0</code> instead of <code>o</code>). If an unrecognized site closely mimics a famous brand, Detecto flags it as an impersonation attack.</p>
+          </div>
+        </details>
+
+        <!-- Q6 -->
+        <details class="faq-details">
+          <summary class="faq-summary">
+            <span class="faq-summary-text">Which Machine Learning algorithm is used and what is its accuracy?</span>
+            <span class="faq-toggle-btn" aria-hidden="true">+</span>
+          </summary>
+          <div class="faq-answer-body">
+            <p>Detecto uses the <strong>Random Forest Classifier</strong> with 100 decision trees, trained on a balanced dataset of <strong>30,000 real-world benign and malicious URLs</strong>.</p>
+            <p>Random Forest was selected because it achieves <strong>99.4% accuracy</strong>, prevents overfitting, handles both numbers and boolean indicators naturally, and produces calibrated prediction probabilities in less than <strong>3 milliseconds</strong>.</p>
+          </div>
+        </details>
+
+        <!-- Q7 -->
+        <details class="faq-details">
+          <summary class="faq-summary">
+            <span class="faq-summary-text">What do the three Verdict tiers (Safe, Suspicious, Malicious) mean?</span>
+            <span class="faq-toggle-btn" aria-hidden="true">+</span>
+          </summary>
+          <div class="faq-answer-body">
+            <p>• 🛡️ <strong>Verified Safe (0% – 25% Risk):</strong> Normal lexical structure, legitimate DNS resolution, trusted SSL encryption, and authentic domain authority.<br>
+            • ⚠️ <strong>Suspicious (26% – 65% Risk):</strong> Displays warning indicators like high character entropy, high-abuse domain extensions (.xyz, .top), missing HTTPS, or redirect hops. Proceed cautiously.<br>
+            • 🚨 <strong>Malicious Threat (66% – 100% Risk):</strong> High probability of brand phishing, credential theft, raw IP hosting, or malware distribution. Do not open or enter credentials.</p>
+          </div>
+        </details>
+
+        <!-- Q8 -->
+        <details class="faq-details">
+          <summary class="faq-summary">
+            <span class="faq-summary-text">What does Detecto inspect in a website's HTML code?</span>
+            <span class="faq-toggle-btn" aria-hidden="true">+</span>
+          </summary>
+          <div class="faq-answer-body">
+            <p>When "Live Network Inspection" is enabled, Detecto streams just the first <strong>35KB</strong> of HTML from the target server without executing dangerous JavaScript.</p>
+            <p>It checks whether the page contains an <code>&lt;input type="password"&gt;</code> field and compares the page title against the domain. If an unrecognized or typosquatted website contains a login password box, Detecto flags it as a credential-harvesting trap.</p>
+          </div>
+        </details>
+
+        <!-- Q9 -->
+        <details class="faq-details">
+          <summary class="faq-summary">
+            <span class="faq-summary-text">How does Detecto unwrap shortened URLs like bit.ly or tinyurl?</span>
+            <span class="faq-toggle-btn" aria-hidden="true">+</span>
+          </summary>
+          <div class="faq-answer-body">
+            <p>URL shorteners are commonly used by attackers to hide malicious links. Detecto follows HTTP 301 and 302 redirect headers across the network to uncover the true final destination domain without executing browser scripts. Both the shortener and the final URL are then checked.</p>
+          </div>
+        </details>
+
+        <!-- Q10 -->
+        <details class="faq-details">
+          <summary class="faq-summary">
+            <span class="faq-summary-text">Is my scan data kept completely private?</span>
+            <span class="faq-toggle-btn" aria-hidden="true">+</span>
+          </summary>
+          <div class="faq-answer-body">
+            <p><strong>Yes, 100% private.</strong> Detecto is built with privacy-first principles. All machine learning inference runs locally on your system, and scan audit logs are stored in your local SQLite database (<code>data/detecto.db</code>). No browsing data or URL history is ever sent to third parties or tracking servers.</p>
+          </div>
+        </details>
+
+        <!-- Q11 -->
+        <details class="faq-details">
+          <summary class="faq-summary">
+            <span class="faq-summary-text">Who created Detecto and what is the project background?</span>
+            <span class="faq-toggle-btn" aria-hidden="true">+</span>
+          </summary>
+          <div class="faq-answer-body">
+            <p>Detecto was researched, engineered, and submitted as an <strong>Academic Major Project</strong> by:</p>
+            <p>• <strong>Mohammad Umar Ansari</strong> (Enrollment ID: <code>2411920</code>)<br>
+            • <strong>Ankit Singh</strong> (Enrollment ID: <code>2411906</code>)</p>
+            <p>Under the academic mentorship of the faculty at <strong>School of Computer Science &amp; Information Technology (SCSIT)</strong>, <strong>Devi Ahilya Vishwavidyalaya (DAVV), Indore</strong>.</p>
+          </div>
+        </details>
+
+        <!-- Q12 -->
+        <details class="faq-details">
+          <summary class="faq-summary">
+            <span class="faq-summary-text">Can I export the audit findings into a formal report?</span>
+            <span class="faq-toggle-btn" aria-hidden="true">+</span>
+          </summary>
+          <div class="faq-answer-body">
+            <p>Yes! Every scan produces an exportable security dossier. You can use <strong>Copy Summary</strong> to copy a structured text report to your clipboard, <strong>Export JSON</strong> for SIEM or automated tooling, or <strong>Print / PDF</strong> to create an academic presentation document.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- 9. MINT BACK-COVER SHAPE WITH AUTHENTIC GEOMETRIC CONFETTI & INSET DARK SLATE FOOTER -->
+    <div class="backcover-outer-wrapper" id="attribution">
+      <!-- Authentic Geometric Confetti Pieces around edges from designprompts.dev -->
+      <!-- Top-left: Violet Squircle with 4 dots -->
+      <div class="confetti-svg-squircle" aria-hidden="true">
+        <span class="confetti-dot"></span>
+        <span class="confetti-dot"></span>
+        <span class="confetti-dot"></span>
+        <span class="confetti-dot"></span>
+      </div>
+
+      <!-- Top-right: Amber Arch -->
+      <div class="confetti-amber-arch" aria-hidden="true"></div>
+
+      <!-- Left edge: Amber Teardrop -->
+      <div class="confetti-amber-teardrop" aria-hidden="true"></div>
+
+      <!-- Right edge: Pink Sparkle Star -->
+      <div class="confetti-pink-star" aria-hidden="true">✦</div>
+
+      <!-- Mint Back-Cover Body -->
+      <div class="mint-backcover-card">
+        <div class="backcover-content-center">
+          <h2>Ready to inspect and secure your web links?</h2>
+          <p>
+            Detecto AI delivers zero-day malicious URL and phishing classification in milliseconds. Tested and validated on over 30,000 real-world samples.
+          </p>
+          <div class="backcover-actions-row">
+            <a href="#scanner" class="btn-primary-action">
+              <span>Launch Live Scanner</span>
+              <span aria-hidden="true">↗</span>
+            </a>
+            <a href="#architecture" class="btn-secondary-action">
+              <span>Review Documentation</span>
+              <span aria-hidden="true">▷</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Academic Synopsis Major Project Card -->
+        <div class="backcover-attribution-card">
+          <div class="attribution-header">
+            <div class="inst-avatar-badge" aria-hidden="true">🎓</div>
+            <div class="inst-info-texts">
+              <h3>School of Computer Science &amp; Information Technology</h3>
+              <p>Devi Ahilya Vishwavidyalaya · Indore (DAVV) · Academic Major Project</p>
+            </div>
+          </div>
+
+          <div class="students-cards-pair">
+            <div class="student-info-cell">
+              <div class="student-initials-badge">MU</div>
+              <div class="student-text-group">
+                <span class="student-sub-role">Submitted By</span>
+                <span class="student-full-name">Mohammad Umar Ansari</span>
+                <span class="student-enrollment-id">Enrollment ID: <strong>2411920</strong></span>
+              </div>
+            </div>
+
+            <div class="student-info-cell">
+              <div class="student-initials-badge">AS</div>
+              <div class="student-text-group">
+                <span class="student-sub-role">Submitted By</span>
+                <span class="student-full-name">Ankit Singh</span>
+                <span class="student-enrollment-id">Enrollment ID: <strong>2411906</strong></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Inset Dark Slate Footer (#1a2234) with broad curved top (42px) -->
+        <footer class="inset-slate-footer">
+          <div class="footer-top-columns">
+            <div class="footer-brand-summary">
+              <div class="footer-brand-title">
+                <div class="brand-logo-squircle" style="width: 36px; height: 36px; padding: 5px;" aria-hidden="true">
+                  <span class="brand-dot" style="width: 7px; height: 7px;"></span>
+                  <span class="brand-dot" style="width: 7px; height: 7px;"></span>
+                  <span class="brand-dot" style="width: 7px; height: 7px;"></span>
+                  <span class="brand-dot" style="width: 7px; height: 7px;"></span>
+                </div>
+                <span>Detecto AI</span>
+              </div>
+              <p class="footer-brand-desc">
+                Intelligent zero-day web threat and phishing detection system with real-time multi-vector network telemetry.
+              </p>
+            </div>
+
+            <div class="footer-col">
+              <h4>Platform</h4>
+              <a href="#scanner">Live Scanner</a>
+              <a href="#architecture">Architecture</a>
+              <a href="#comparison">Comparison</a>
+              <a href="#how-it-works">Process Strip</a>
+              <a href="#faq">FAQs</a>
+            </div>
+
+            <div class="footer-col">
+              <h4>Detection</h4>
+              <a href="#architecture">Lexical Vectors</a>
+              <a href="#architecture">Typosquatting</a>
+              <a href="#architecture">DNS Telemetry</a>
+              <a href="#architecture">Random Forest</a>
+            </div>
+
+            <div class="footer-col">
+              <h4>Academic</h4>
+              <a href="#attribution">SCSIT DAVV</a>
+              <a href="#attribution">Synopsis Report</a>
+              <a href="#attribution">Viva Q&amp;A</a>
+              <a href="#attribution">Project Team</a>
+            </div>
+
+            <div class="footer-col">
+              <h4>Students</h4>
+              <a href="#attribution">M. Umar Ansari</a>
+              <a href="#attribution">Ankit Singh</a>
+              <a href="#attribution">Batch 2024-2026</a>
+              <a href="#attribution">MCA / M.Sc CS</a>
+            </div>
+          </div>
+
+          <div class="footer-bottom-row">
+            <div>
+              © 2026 Detecto System · Submitted by <strong>Mohammad Umar Ansari (2411920)</strong> &amp; <strong>Ankit Singh (2411906)</strong> · SCSIT DAVV Indore
+            </div>
+            <div class="footer-links-row">
+              <a href="https://designprompts.dev/playful-geometric" target="_blank" rel="noopener">Playful Geometric Style</a>
+              <a href="#hero">Back to Top ↑</a>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+
+    <!-- Toast Notification (Hidden by default) -->
+    <div class="toast-popup hidden" id="toastNotification" role="alert" style="display: none;">
+      <span id="toastMessage">Summary copied to clipboard!</span>
+    </div>
+  </div>
+
+  <!-- Client Application Logic -->
+  <script src="/static/js/app.js"></script>
+</body>
+</html>

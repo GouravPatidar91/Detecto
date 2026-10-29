@@ -1,0 +1,2871 @@
+/* ============================================================
+   Detecto — Playful Geometric Visual System
+   Faithfully matched to https://designprompts.dev/playful-geometric
+   Authoritative Tokens, Activity-book Composition, Hard Offsets,
+   Outlined Geometric Pieces, Warm Paper Ground, Host Grotesk.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,600;0,700;0,800;1,700&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=JetBrains+Mono:wght@500;700&display=swap');
+
+:root {
+  /* Authoritative Design Tokens */
+  --dp-color-ground: #fffdf5;
+  --dp-color-panel: #ffffff;
+  --dp-color-ink: #253044;
+  --dp-color-outline: #252b3a;
+  --dp-color-accent: #6434df;
+  --dp-color-accent-secondary: #ff78c5;
+  --dp-color-accent-warm: #ffd05b;
+  --dp-color-accent-fresh: #9bf1cd;
+  --dp-color-field-soft: #e9fff5;
+  --dp-color-selection: #f1ebff;
+  --dp-color-rule-muted: #b8b6c5;
+
+  --dp-typography-display: "Host Grotesk", "PlayfulGeometricDisplay", -apple-system, sans-serif;
+  --dp-typography-reading: "Instrument Sans", "PlayfulGeometricReading", -apple-system, sans-serif;
+  --dp-typography-mono: "JetBrains Mono", monospace;
+
+  --dp-typography-reading-compact: 16px;
+  --dp-typography-label: 14px;
+  --dp-typography-metadata: 13px;
+  --dp-typography-reading-leading: 1.65;
+
+  --dp-spacing-gap-compact: 12px;
+  --dp-radius-corner: 17px;
+  --dp-border-outline-width: 3px;
+  --dp-border-detail-width: 2px;
+  --dp-motion-interaction: 180ms;
+
+  /* Hard Offset Shadows */
+  --shadow-button: 4px 4px 0 var(--dp-color-outline);
+  --shadow-button-hover: 6px 6px 0 var(--dp-color-outline);
+  --shadow-card: 6px 6px 0 var(--dp-color-outline);
+  --shadow-book: 14px 14px 0 var(--dp-color-accent);
+}
+
+/* Reset & Global */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--dp-color-ground);
+  color: var(--dp-color-ink);
+  font-family: var(--dp-typography-reading);
+  font-size: var(--dp-typography-reading-compact);
+  line-height: var(--dp-typography-reading-leading);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  background-image: radial-gradient(circle at 1px 1px, rgba(37, 43, 58, 0.04) 1px, transparent 0);
+  background-size: 24px 24px;
+  overflow-x: hidden;
+}
+
+/* Reduced Motion Override */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+    transform: none !important;
+  }
+}
+
+::selection {
+  background-color: var(--dp-color-selection);
+  color: var(--dp-color-accent);
+}
+
+:focus-visible {
+  outline: 3px solid var(--dp-color-accent);
+  outline-offset: 3px;
+}
+
+/* Page Container */
+.site-wrapper {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 1.25rem 2rem 3rem;
+  position: relative;
+}
+
+/* ============================================================
+   1. NAVIGATION BAR
+   Matches designprompts.dev: Transparent bar sitting directly
+   on warm paper ground, brand on left, links, 3-circle badge on right.
+   ============================================================ */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0;
+  margin-bottom: 3rem;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.brand-logo-squircle {
+  width: 44px;
+  height: 44px;
+  background: var(--dp-color-accent);
+  border: var(--dp-border-outline-width) solid var(--dp-color-outline);
+  border-radius: 14px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  place-items: center;
+  padding: 7px;
+  box-shadow: 2px 2px 0 var(--dp-color-outline);
+}
+
+.brand-dot {
+  width: 9px;
+  height: 9px;
+  background: #ffffff;
+  border-radius: 50%;
+}
+
+.brand-name {
+  font-family: var(--dp-typography-display);
+  font-size: 1.85rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: var(--dp-color-ink);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2.25rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--dp-color-ink);
+  font-size: 1.02rem;
+  font-weight: 600;
+  transition: color var(--dp-motion-interaction);
+}
+
+.nav-links a:hover {
+  color: var(--dp-color-accent);
+}
+
+.nav-badge-circles {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.three-dots-pill {
+  display: inline-flex;
+  align-items: center;
+  background: #ffffff;
+  border: var(--dp-border-outline-width) solid var(--dp-color-outline);
+  padding: 4px 8px;
+  border-radius: 9999px;
+  box-shadow: 2px 2px 0 var(--dp-color-outline);
+}
+
+.circle-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid var(--dp-color-outline);
+  margin-left: -4px;
+}
+
+.circle-dot:first-child {
+  margin-left: 0;
+  background: var(--dp-color-accent-secondary);
+}
+
+.circle-dot:nth-child(2) {
+  background: var(--dp-color-accent-warm);
+}
+
+.circle-dot:nth-child(3) {
+  background: var(--dp-color-accent-fresh);
+}
+
+.btn-nav-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  text-decoration: none;
+  background: var(--dp-color-accent);
+  color: #ffffff;
+  border: var(--dp-border-outline-width) solid var(--dp-color-outline);
+  padding: 0.55rem 1.25rem;
+  border-radius: var(--dp-radius-corner);
+  font-family: var(--dp-typography-display);
+  font-size: 0.95rem;
+  font-weight: 800;
+  box-shadow: 3px 3px 0 var(--dp-color-outline);
+  transition: transform var(--dp-motion-interaction), box-shadow var(--dp-motion-interaction);
+}
+
+.btn-nav-cta:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0 var(--dp-color-outline);
+}
+
+.btn-nav-cta:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--dp-color-outline);
+}
+
+/* ============================================================
+   2. HERO SECTION
+   Wider text column beside authentic shape assembly with grid card,
+   smiling arch, mint card with bars, pink chart card, yellow smiley!
+   ============================================================ */
+.hero-section {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 3.5rem;
+  align-items: center;
+  margin-bottom: 5rem;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.hero-title {
+  font-family: var(--dp-typography-display);
+  font-size: clamp(3.2rem, 5.8vw, 5.4rem);
+  font-weight: 900;
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+  color: var(--dp-color-ink);
+}
+
+.hero-title .text-violet {
+  color: var(--dp-color-accent);
+}
+
+.hero-subtitle {
+  font-size: 1.18rem;
+  line-height: 1.65;
+  color: #3b4861;
+  max-width: 540px;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.btn-primary-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  text-decoration: none;
+  background: var(--dp-color-accent);
+  color: #ffffff;
+  border: var(--dp-border-outline-width) solid var(--dp-color-outline);
+  padding: 0.9rem 1.85rem;
+  border-radius: var(--dp-radius-corner);
+  font-family: var(--dp-typography-display);
+  font-size: 1.1rem;
+  font-weight: 800;
+  box-shadow: var(--shadow-button);
+  cursor: pointer;
+  transition: transform var(--dp-motion-interaction), box-shadow var(--dp-motion-interaction);
+}
+
+.btn-primary-action:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-button-hover);
+}
+
+.btn-primary-action:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--dp-color-outline);
+}
+
+.btn-secondary-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  text-decoration: none;
+  background: #ffffff;
+  color: var(--dp-color-ink);
+  border: var(--dp-border-outline-width) solid var(--dp-color-outline);
+  padding: 0.9rem 1.75rem;
+  border-radius: var(--dp-radius-corner);
+  font-family: var(--dp-typography-display);
+  font-size: 1.1rem;
+  font-weight: 800;
+  box-shadow: var(--shadow-button);
+  cursor: pointer;
+  transition: transform var(--dp-motion-interaction), box-shadow var(--dp-motion-interaction);
+}
+
+.btn-secondary-action:hover {
+  background: var(--dp-color-accent-warm);
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-button-hover);
+}
+
+.btn-secondary-action:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--dp-color-outline);
+}
+
+.hero-social-proof {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-size: 0.95rem;
+  color: #4b5870;
+  margin-top: 0.25rem;
+}
+
+.status-dot-mint {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--dp-color-accent-fresh);
+  border: var(--dp-border-detail-width) solid var(--dp-color-outline);
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   HERO STATIC ASSEMBLY OF COLORFUL SHAPES
+   Authentic activity-book composition from designprompts.dev:
+   1. Grid notebook card base
+   2. Violet arch with cute face / shield
+   3. Mint card with bars & checkmark badge
+   4. Pink analytics card with line & bar chart
+   5. Yellow smiley face with star badge
+   6. Accents: 4-point pink star, small tick marks
+   ============================================================ */
+.hero-shapes-assembly {
+  position: relative;
+  width: 100%;
+  height: 440px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.assembly-canvas-box {
+  width: 100%;
+  max-width: 460px;
+  height: 440px;
+  position: relative;
+}
+
+/* 1. Grid Notebook Card Behind */
+.assembly-grid-backdrop {
+  position: absolute;
+  top: 30px;
+  left: 20px;
+  right: 20px;
+  bottom: 25px;
+  background-color: #ffffff;
+  border: var(--dp-border-outline-width) solid var(--dp-color-outline);
+  border-radius: 28px;
+  background-image: 
+    linear-gradient(to right, rgba(37, 43, 58, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(37, 43, 58, 0.06) 1px, transparent 1px);
+  background-size: 28px 28px;
+  box-shadow: var(--shadow-card);
+  z-index: 1;
+}
+
+/* 2. Violet Arch at top-left */
+.assembly-violet-arch {
+  position: absolute;
+  top: 0px;
+  left: 24px;
+  width: 195px;
+  height: 195px;
+  background: var(--dp-color-accent);
+  border: var(--dp-border-outline-width) solid var(--dp-color-outline);
+  border-top-left-radius: 98px;
+  border-top-right-radius: 98px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  box-shadow: 5px 5px 0 var(--dp-color-outline);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.arch-face {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.face-eyes {
+  display: flex;
+  gap: 36px;
+}
+
+.eye {
+  width: 10px;
+  height: 16px;
+  background: #ffffff;
+  border-radius: 5px;
+}
+
+.face-smile {
+  width: 44px;
+  height: 22px;
+  border-bottom: 5px solid #ffffff;
+  border-radius: 0 0 24px 24px;
+}
+
+/* 3. Mint Card on top-right with bars & checkmark badge */
+.assembly-mint-card {
+  position: absolute;
+  top: 45px;
+  right: 15px;
+  width: 185px;
+  height: 155px;
+  background: var(--dp-color-accent-fresh);
+  border: var(--dp-border-outline-width) solid var(--dp-color-outline);
+  border-radius: 22px;
+  box-shadow: 5px 5px 0 var(--dp-color-outline);
+  z-index: 2;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+}
+
+.mint-card-bar-1 {
+  width: 75%;
+  height: 10px;
+  background: var(--dp-color-outline);
+  border-radius: 6px;
+}
+
+.mint-card-bar-2 {
+  width: 50%;
+  height: 10px;
+  background: var(--dp-color-outline);
+  border-radius: 6px;
+}
+
+.mint-card-check-badge {
+  position: absolute;
+  top: -14px;
+  right: -10px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--dp-color-accent-warm);
+  border: var(--dp-border-outline-width) solid var(--dp-color-outline);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--dp-typography-display);
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: var(--dp-color-outline);
+  box-shadow: 2px 2px 0 var(--dp-color-outline);
+}
+
+/* 4. Pink Analytics Card at bottom-left */
+.assembly-pink-card {
+  position: absolute;
+  bottom: 12px;
+  left: 28px;
+  width: 185px;
+  height: 155px;
+  background: var(--dp-color-accent-secondary);
+  border: var(--dp-border-outline-width) solid var(--dp-color-outline);
+  border-radius: 22px;
+  box-shadow: 5px 5px 0 var(--dp-color-outline);
+  z-index: 4;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.pink-chart-svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* 5. Yellow Smiley Face on bottom-right with purple star badge */
+.assembly-yellow-circle {
+  position: absolute;
+  bottom: 0px;
+  right: 25px;
+  width: 165px;
+  height: 165px;
+  background: var(--dp-color-accent-warm);
+  border: var(--dp-border-outline-width) solid var(--dp-color-outline);
+  border-radius: 50%;
+  box-shadow: 5px 5px 0 var(--dp-color-outline);
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.yellow-eyes {
+  display: flex;
+  gap: 28px;
+}
+
+.yellow-eye {
+  width: 9px;
+  height: 18px;
+  background: var(--dp-color-outline);
+  border-radius: 5px;
+}
+
+.yellow-smile {
+  width: 48px;
+  height: 24px;
+  border-bottom: 6px solid var(--dp-color-outline);
+  border-radius: 0 0 30px 30px;
+}
+
+.yellow-star-badge {
+  position: absolute;
+  bottom: 10px;
+  right: -8px;
+  width: 40px;
+  height: 40px;
+  background: var(--dp-color-accent);
+  border: var(--dp-border-outline-width) solid var(--dp-color-outline);
+  transform: rotate(15deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  box-shadow: 2px 2px 0 var(--dp-color-outline);
+}
+
+/* 6. Accent Sparkles */
+.assembly-spark-pink {
+  position: absolute;
+  top: 15px;
+  right: 200px;
+  font-size: 2rem;
+  color: var(--dp-color-accent-secondary);
+  z-index: 6;
+  user-select: none;
+}
+
+.assembly-tick-1 {
+  position: absolute;
+  top: 8px;
+  right: 120px;
+  width: 16px;
+  height: 4px;
+  background: var(--dp-color-outline);
+  transform: rotate(45deg);
+  border-radius: 2px;
+}
+
+/* ============================================================
+   3. FACT STRIP (Layered Mint Base with Outlined Base)
+   Matches designprompts.dev:
+   Underlying mint base offset down and right,
+   white card with 4 columns, each with an outlined colored shape!
+   ============================================================ */
+.fact-strip-section {
+  position: relative;
+  margin-bottom: 5.5rem;
+}
+
+.fact-strip-mint-base {
+  position: absolute;
+  inset: 12px -6px -12px 6px;
+  background: var(--dp-color-accent-fresh);
+  border: var(--dp-border-outline-width) solid var(--dp-color-outline);
+  border-radius: 28px;
+  z-index: 0;
+}
+
+.fact-strip-white-card {
+  position: relative;
+  background: #ffffff;
+  border: var(--dp-border-outline-width) solid var(--dp-color-outline);
+  border-radius: 28px;
+  box-shadow: 4px 4px 0 var(--dp-color-outline);
+  padding: 1.75rem 2rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  z-index: 1;
+}
+
+.fact-item {
+  display: flex;
+  align-items: center;
+  gap: 1.15rem;
+  padding: 0 1.25rem;
+  position: relative;
+}
+
+.fact-item:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 10%;
+  height: 80%;
+  width: 1px;
+  background: var(--dp-color-rule-muted);
+}
+
+.fact-shape {
+  width: 42px;
+  height: 42px;
+  border: var(--dp-border-outline-width) solid var(--dp-color-outline);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 2px 2px 0 var(--dp-color-outline);
+}
+
+.shape-pink-circle {
+  border-radius: 50%;
+  background: var(--dp-color-accent-secondary);
+}
+
+.shape-mint-arch {
+  border-top-left-radius: 21px;
+  border-top-right-radius: 21px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  background: var(--dp-color-accent-fresh);
+}
+
+.shape-violet-star {
+  border-radius: 10px;
+  background: var(--dp-color-accent);
+  color: #ffffff;
+  font-size: 1.25rem;
+}
+
+.shape-amber-stone {
+  border-radius: 14px;
+  background: var(--dp-color-accent-warm);
+  transform: rotate(10deg);
+}
+
+.fact-texts {
+  display: flex;
+  flex-direction: column;
+}
+
+.fact-number {
+  font-family: var(--dp-typography-display);
+  font-size: clamp(2rem, 2.8vw, 2.75rem);
+  font-weight: 900;
+  line-height: 1;
+  color: var(--dp-color-ink);
+  letter-spacing: -0.03em;
+}
+
+.fact-label {
+  font-family: var(--dp-typography-display);
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--dp-color-ink);
+  margin-top: 0.25rem;
+}
+
+.fact-subtext {
+  font-size: 0.8rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+/* ============================================================
+   4. SHARED WHITE BOOK SHAPE
+   With thick violet offset backing and small tilted pink tab!
+   Inside:
+   - 6-card feature grid with dashed dividers
+   - Image preview / editorial strip with varied arched silhouettes
+   ============================================================ */
+.book-wrapper {
+  position: relative;
+  margin-bottom: 5.5rem;
+}
+
+.book-tab-tilted {
+  position: absolute;
+  top: -18px;
+  left: 60px;
+  background: var(--dp-color-accent-secondary);
+  border: var(--dp-border-outline-width) solid var(--dp-color-outline);
+  border-radius: 8px;
+  padding: 5px 22px;
+  font-family: var(--dp-typography-display);
+  font-size: 0.85rem;
+  font-weight: 900;
+  color: var(--dp-color-outline);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transform: rotate(-3deg);
+  z-index: 10;
+  box-shadow: 2px 2px 0 var(--dp-color-outline);
+}
+
+.white-book-container {
+  background: #ffffff;
+  border: var(--dp-border-outline-width) solid var(--dp-color-outline);
+  border-radius: 36px;
+  box-shadow: var(--shadow-book);
+  padding: 4rem 3.5rem;
+  position: relative;
+}
+
+.book-header {
+  margin-bottom: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.book-title {
+  font-family: var(--dp-typography-display);
+  font-size: clamp(2.4rem, 4vw, 3.4rem);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--dp-color-ink);
+}
+
+.book-subtitle {
+  font-size: 1.12rem;
+  color: #4b5870;
+  max-width: 650px;
+}
+
+/* 6-Card Features Grid with dashed dividers */
+.book-features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: 1px dashed var(--dp-color-rule-muted);
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 3.5rem;
+}
+
+.book-feature-cell {
+  padding: 2.25rem 2rem;
+  border-right: 1px dashed var(--dp-color-rule-muted);
+  border-bottom: 1px dashed var(--dp-color-rule-muted);
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.book-feature-cell:nth-child(3n) {
+  border-right: none;
+}
+
+.book-feature-cell:nth-child(n+4) {
+  border-bottom: none;
+}
+
+.cell-icon-badge {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  border: var(--dp-border-outline-width) solid var(--dp-color-outline);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  box-shadow: 2px 2px 0 var(--dp-color-outline);
+  margin-bottom: 0.5rem;
+}
+
+.icon-mint {
+  background: var(--dp-color-accent-fresh);
+}
+
+.icon-amber {
+  background: var(--dp-color-accent-warm);
+}
+
+.icon-pink {
+  background: var(--dp-color-accent-secondary);
+}
+
+.icon-violet {
+  background: var(--dp-color-accent);
+  color: #ffffff;
+}
+
+.book-feature-cell h3 {
+  font-family: var(--dp-typography-display);
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--dp-color-ink);
+}
+
+.book-feature-cell p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #4b5870;
+}
+
+/* Editorial Silhouette Image Group inside Book */
+.editorial-silhouette-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.editorial-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.silhouette-frame {
+  height: 200px;
+  border: var(--dp-border-outline-width) solid var(--dp-color-outline);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 5px 5px 0 var(--dp-color-outline);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--dp-typography-display);
+  font-weight: 900;
+  font-size: 1.1rem;
+  color: var(--dp-color-outline);
+}
+
+.silhouette-arch {
+  border-top-left-radius: 100px;
+  border-top-right-radius: 100px;
+  border-bottom-left-radius: 18px;
+  border-bottom-right-radius: 18px;
+  background: linear-gradient(135deg, #ffd05b 0%, #ff78c5 100%);
+}
+
+.silhouette-squircle {
+  border-radius: 28px;
+  background: linear-gradient(135deg, #9bf1cd 0%, #6434df 100%);
+  color: #ffffff;
+}
+
+.silhouette-dome {
+  border-radius: 18px;
+  border-top-right-radius: 90px;
+  background: linear-gradient(135deg, #f1ebff 0%, #9bf1cd 100%);
+}
+
+.editorial-tag {
+  font-size: var(--dp-typography-metadata);
+  color: #64748b;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.editorial-card h4 {
+  font-family: var(--dp-typography-display);
+  font-size: 1.2rem;
+  font-weight: 800;
+  line-height: 1.25;
+  color: var(--dp-color-ink);
+}
+
+/* ============================================================
+   5. NUMBERED PROCESS STRIP ("How Detecto Works")
+   Sits on warm paper ground, connecting horizontal line with 3px outline,
+   numbered badges in amber, pink, mint, violet.
+   ============================================================ */
+.process-section {
+  margin-bottom: 5.5rem;
+}
+
+.process-header-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.process-header-row h2 {
+  font-family: var(--dp-typography-display);
+  font-size: clamp(2.4rem, 4vw, 3.2rem);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  color: var(--dp-color-ink);
+}
+
+.process-header-sub {
+  font-size: 1.05rem;
+  color: #64748b;
+}
+
+.process-strip-container {
+  position: relative;
+  padding: 1.5rem 0;
+}
+
+.process-horizontal-line {
+  position: absolute;
+  top: 50px;
+  left: 60px;
+  right: 60px;
+  height: 4px;
+  background: var(--dp-color-outline);
+  z-index: 1;
+}
+
+.process-steps-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+.process-step-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.step-number-badge {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  border: var(--dp-border-outline-width) solid var(--dp-color-outline);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--dp-typography-display);
+  font-size: 1.65rem;
+  font-weight: 900;
+  color: var(--dp-color-outline);
+  box-shadow: 3px 3px 0 var(--dp-color-outline);
+  background: #ffffff;
+}
+
+.badge-amber {
+  background: var(--dp-color-accent-warm);
+}
+
+.badge-pink {
+  background: var(--dp-color-accent-secondary);
+  border-radius: 16px;
+  transform: rotate(-4deg);
+}
+
+.badge-mint {
+  background: var(--dp-color-accent-fresh);
+}
+
+.badge-violet {
+  background: var(--dp-color-accent);
+  color: #ffffff;
+  border-radius: 16px;
+  transform: rotate(4deg);
+}
+
+.process-step-col h3 {
+  font-family: var(--dp-typography-display);
+  font-size: 1.3rem;
+  font-weight: 800;
+  line-height: 1.25;
+  color: var(--dp-color-ink);
+}
+
+.process-step-col p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #4b5870;
+}
+
+/* ============================================================
+   6. BENEFITS SHARED PALE-MINT PANEL
+   Matches "Why teams choose Acme":
+   Pale mint card with 3px outline, rounded corners, violet pill on top border,
+   overlapping shapes on left, 2x2 grid of checkmarked benefits on right!
+   ============================================================ */
+.benefits-panel-section {
+  position: relative;
+  background: #d5f7e7;
+  border: var(--dp-border-outline-width) solid var(--dp-color-outline);
+  border-radius: 36px;
+  box-shadow: 6px 6px 0 var(--dp-color-outline);
+  padding: 4rem 3.5rem;
+  margin-bottom: 5.5rem;
+}
+
+.benefits-top-pill {
+  position: absolute;
+  top: -16px;
+  right: 180px;
+  width: 48px;
+  height: 24px;
+  background: var(--dp-color-accent);
+  border: var(--dp-border-outline-width) solid var(--dp-color-outline);
+  border-radius: 9999px;
+  box-shadow: 2px 2px 0 var(--dp-color-outline);
+}
+
+.benefits-layout-grid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 3.5rem;
+  align-items: center;
+}
+
+.benefits-brand-col {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.benefits-brand-col h2 {
+  font-family: var(--dp-typography-display);
+  font-size: clamp(2.4rem, 4vw, 3.4rem);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: var(--dp-color-ink);
+}
+
+/* Cluster of 4 overlapping shapes from designprompts.dev */
+.shapes-cluster {
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: 90px;
+}
+
+.cluster-shape {
+  width: 60px;
+  height: 60px;
+  border: var(--dp-border-outline-width) solid var(--dp-color-outline);
+  box-shadow: 3px 3px 0 var(--dp-color-outline);
+  position: absolute;
+}
+
+.cl-violet {
+  left: 0;
+  background: var(--dp-color-accent);
+  border-radius: 16px;
+  transform: rotate(-10deg);
+  z-index: 1;
+}
+
+.cl-pink {
+  left: 42px;
+  background: var(--dp-color-accent-secondary);
+  border-radius: 50%;
+  z-index: 2;
+}
+
+.cl-amber {
+  left: 88px;
+  background: var(--dp-color-accent-warm);
+  border-radius: 14px;
+  transform: rotate(15deg);
+  z-index: 3;
+}
+
+.cl-mint {
+  left: 130px;
+  background: var(--dp-color-accent-fresh);
+  border-radius: 50%;
+  z-index: 4;
+}
+
+.benefits-items-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.benefit-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.check-circle-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: var(--dp-border-outline-width) solid var(--dp-color-outline);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 0.95rem;
+  color: var(--dp-color-outline);
+  box-shadow: 2px 2px 0 var(--dp-color-outline);
+}
+
+.benefit-block h3 {
+  font-family: var(--dp-typography-display);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--dp-color-ink);
+}
+
+.benefit-block p {
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: #3b4861;
+}
+
+/* ============================================================
+   7. COMPARISON TICKETS
+   Matches designprompts.dev tickets layout:
+   White card container, top-right note card with yellow offset shadow,
+   horizontal tickets with 3 columns (choice, dashed divider, details, button).
+   ============================================================ */
+.comparison-section {
+  background: #ffffff;
+  border: var(--dp-border-outline-width) solid var(--dp-color-outline);
+  border-radius: 36px;
+  box-shadow: var(--shadow-card);
+  padding: 4rem 3.5rem;
+  margin-bottom: 5.5rem;
+  position: relative;
+}
+
+.comparison-header-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.comparison-titles h2 {
+  font-family: var(--dp-typography-display);
+  font-size: clamp(2.4rem, 4vw, 3.2rem);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  color: var(--dp-color-ink);
+  margin-bottom: 0.35rem;
+}
+
+.comparison-titles p {
+  font-size: 1.1rem;
+  color: #64748b;
+}
+
+.comparison-note-card {
+  background: #ffffff;
+  border: var(--dp-border-outline-width) solid var(--dp-color-outline);
+  border-radius: 20px;
+  box-shadow: 4px 4px 0 var(--dp-color-accent-warm);
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  max-width: 380px;
+}
+
+.note-pink-circle {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--dp-color-accent-secondary);
+  border: var(--dp-border-detail-width) solid var(--dp-color-outline);
+  flex-shrink: 0;
+}
+
+.comparison-note-card p {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #334155;
+  line-height: 1.4;
+}
+
+.tickets-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.ticket-card {
+  display: grid;
+  grid-template-columns: 280px 1fr 220px;
+  align-items: center;
+  gap: 2.5rem;
+  background: #ffffff;
+  border: var(--dp-border-outline-width) solid var(--dp-color-outline);
+  border-radius: 24px;
+  box-shadow: 4px 4px 0 var(--dp-color-outline);
+  padding: 2.25rem 2.5rem;
+}
+
+.ticket-selected-pro {
+  background: var(--dp-color-selection);
+  border-color: var(--dp-color-outline);
+  box-shadow: 8px 8px 0 var(--dp-color-accent);
+}
+
+.ticket-left-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.ticket-badge-tag {
+  align-self: flex-start;
+  background: var(--dp-color-accent-warm);
+  border: var(--dp-border-detail-width) solid var(--dp-color-outline);
+  padding: 0.15rem 0.65rem;
+  border-radius: 9999px;
+  font-family: var(--dp-typography-display);
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: var(--dp-color-outline);
+}
+
+.ticket-left-col h3 {
+  font-family: var(--dp-typography-display);
+  font-size: 1.75rem;
+  font-weight: 900;
+  color: var(--dp-color-ink);
+}
+
+.ticket-left-col .ticket-summary {
+  font-size: 0.92rem;
+  color: #64748b;
+  line-height: 1.45;
+}
+
+.ticket-price-bold {
+  font-family: var(--dp-typography-display);
+  font-size: 1.35rem;
+  font-weight: 900;
+  color: var(--dp-color-ink);
+  margin-top: 0.5rem;
+}
+
+.ticket-center-features {
+  border-left: 1px dashed var(--dp-color-rule-muted);
+  padding-left: 2rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.65rem 1.5rem;
+}
+
+.feature-check-item {
+  font-size: 0.92rem;
+  color: #334155;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.feature-check-item.item-negative {
+  color: #94a3b8;
+  text-decoration: line-through;
+}
+
+.check-symbol {
+  font-weight: 900;
+  color: var(--dp-color-outline);
+}
+
+.ticket-right-action {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.action-shape-mint-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--dp-color-accent-fresh);
+  border: var(--dp-border-outline-width) solid var(--dp-color-outline);
+}
+
+.action-shape-violet-pebble {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  background: var(--dp-color-accent);
+  border: var(--dp-border-outline-width) solid var(--dp-color-outline);
+  transform: rotate(15deg);
+}
+
+.btn-ticket-secondary {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: #ffffff;
+  color: var(--dp-color-ink);
+  border: var(--dp-border-outline-width) solid var(--dp-color-outline);
+  padding: 0.75rem 1rem;
+  border-radius: var(--dp-radius-corner);
+  font-family: var(--dp-typography-display);
+  font-size: 1rem;
+  font-weight: 800;
+  box-shadow: 3px 3px 0 var(--dp-color-outline);
+  cursor: pointer;
+}
+
+.btn-ticket-primary {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: var(--dp-color-accent);
+  color: #ffffff;
+  border: var(--dp-border-outline-width) solid var(--dp-color-outline);
+  padding: 0.75rem 1rem;
+  border-radius: var(--dp-radius-corner);
+  font-family: var(--dp-typography-display);
+  font-size: 1rem;
+  font-weight: 800;
+  box-shadow: 4px 4px 0 var(--dp-color-outline);
+  cursor: pointer;
+}
+
+/* ============================================================
+   8. LIVE URL THREAT SCANNER CONSOLE
+   Centrally styled in Playful Geometric activity-book aesthetics!
+   ============================================================ */
+.scanner-section {
+  margin-bottom: 5.5rem;
+}
+
+.scanner-main-card {
+  background: #ffffff;
+  border: var(--dp-border-outline-width) solid var(--dp-color-outline);
+  border-radius: 36px;
+  box-shadow: var(--shadow-card);
+  padding: 3.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.scanner-title-row {
+  margin-bottom: 2rem;
+}
+
+.scanner-title-row h2 {
+  font-family: var(--dp-typography-display);
+  font-size: clamp(2.2rem, 3.8vw, 3rem);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  color: var(--dp-color-ink);
+  margin-bottom: 0.35rem;
+}
+
+.scanner-title-row p {
+  font-size: 1.1rem;
+  color: #64748b;
+}
+
+.scan-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.search-bar-wrap {
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  border: var(--dp-border-outline-width) solid var(--dp-color-outline);
+  border-radius: var(--dp-radius-corner);
+  padding: 0.5rem 0.6rem 0.5rem 1.25rem;
+  box-shadow: 4px 4px 0 var(--dp-color-outline);
+}
+
+.search-bar-wrap:focus-within {
+  border-color: var(--dp-color-accent);
+  box-shadow: 6px 6px 0 var(--dp-color-outline);
+}
+
+.search-input-field {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-family: var(--dp-typography-reading);
+  font-size: 1.15rem;
+  color: var(--dp-color-ink);
+  outline: none;
+  min-width: 0;
+}
+
+.btn-clear-input {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  font-size: 1.25rem;
+  padding: 0.4rem 0.75rem;
+  cursor: pointer;
+}
+
+.btn-clear-input:hover {
+  color: var(--dp-color-ink);
+}
+
+.btn-analyze-submit {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--dp-color-accent);
+  color: #ffffff;
+  border: var(--dp-border-outline-width) solid var(--dp-color-outline);
+  padding: 0.95rem 2rem;
+  border-radius: 12px;
+  font-family: var(--dp-typography-display);
+  font-size: 1.1rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 var(--dp-color-outline);
+  transition: transform var(--dp-motion-interaction), box-shadow var(--dp-motion-interaction);
+}
+
+.btn-analyze-submit:hover:not(:disabled) {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0 var(--dp-color-outline);
+}
+
+.btn-analyze-submit:active:not(:disabled) {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--dp-color-outline);
+}
+
+.spinner-icon {
+  width: 16px;
+  height: 16px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: spin 0.75s linear infinite;
+  display: none;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.scan-options-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.clean-toggle-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #334155;
+}
+
+.clean-toggle-label input {
+  display: none;
+}
+
+.toggle-switch-track {
+  width: 48px;
+  height: 26px;
+  background: #cbd5e1;
+  border: var(--dp-border-detail-width) solid var(--dp-color-outline);
+  border-radius: 9999px;
+  position: relative;
+  transition: background var(--dp-motion-interaction);
+}
+
+.toggle-switch-track::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 18px;
+  height: 18px;
+  background: #ffffff;
+  border: var(--dp-border-detail-width) solid var(--dp-color-outline);
+  border-radius: 50%;
+  transition: transform var(--dp-motion-interaction);
+}
+
+.clean-toggle-label input:checked + .toggle-switch-track {
+  background: var(--dp-color-accent-fresh);
+}
+
+.clean-toggle-label input:checked + .toggle-switch-track::after {
+  transform: translateX(22px);
+}
+
+/* Sample Pills */
+.sample-pills-row {
+  margin-top: 1.75rem;
+  padding-top: 1.5rem;
+  border-top: 1px dashed var(--dp-color-rule-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.pills-heading {
+  font-family: var(--dp-typography-display);
+  font-size: 0.85rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #64748b;
+  letter-spacing: 0.05em;
+}
+
+.pill-btn {
+  background: #ffffff;
+  border: var(--dp-border-detail-width) solid var(--dp-color-outline);
+  padding: 0.4rem 0.95rem;
+  border-radius: 9999px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--dp-color-ink);
+  cursor: pointer;
+  box-shadow: 2px 2px 0 var(--dp-color-outline);
+  transition: transform var(--dp-motion-interaction), box-shadow var(--dp-motion-interaction);
+}
+
+.pill-btn:hover {
+  background: var(--dp-color-field-soft);
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 var(--dp-color-outline);
+}
+
+.pill-btn.pill-alert {
+  background: #fff1f2;
+}
+
+/* Audit Report Card */
+.results-container {
+  margin-bottom: 3.5rem;
+}
+
+.results-container.hidden {
+  display: none;
+}
+
+.report-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.report-tag-text {
+  font-family: var(--dp-typography-display);
+  font-size: 1.2rem;
+  font-weight: 900;
+  color: var(--dp-color-outline);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.report-export-buttons {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.btn-report-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #ffffff;
+  border: var(--dp-border-detail-width) solid var(--dp-color-outline);
+  padding: 0.5rem 1rem;
+  border-radius: var(--dp-radius-corner);
+  font-family: var(--dp-typography-display);
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--dp-color-ink);
+  cursor: pointer;
+  box-shadow: 2px 2px 0 var(--dp-color-outline);
+  transition: transform var(--dp-motion-interaction), box-shadow var(--dp-motion-interaction);
+}
+
+.btn-report-action:hover {
+  background: var(--dp-color-accent-warm);
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 var(--dp-color-outline);
+}
+
+.result-card-box {
+  background: #ffffff;
+  border: var(--dp-border-outline-width) solid var(--dp-color-outline);
+  border-radius: 32px;
+  box-shadow: var(--shadow-card);
+  padding: 3rem;
+}
+
+.verdict-header-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2rem;
+  align-items: center;
+  padding-bottom: 2rem;
+  border-bottom: var(--dp-border-outline-width) solid var(--dp-color-outline);
+}
+
+.verdict-info-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.verdict-badge-box {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.5rem 1.25rem;
+  border-radius: 9999px;
+  border: var(--dp-border-outline-width) solid var(--dp-color-outline);
+  font-family: var(--dp-typography-display);
+  font-size: 1.15rem;
+  font-weight: 900;
+  box-shadow: 3px 3px 0 var(--dp-color-outline);
+}
+
+.badge-safe {
+  background: var(--dp-color-accent-fresh);
+  color: var(--dp-color-outline);
+}
+
+.badge-suspicious {
+  background: var(--dp-color-accent-warm);
+  color: var(--dp-color-outline);
+}
+
+.badge-malicious {
+  background: var(--dp-color-accent-secondary);
+  color: var(--dp-color-outline);
+}
+
+.target-url-string {
+  font-family: var(--dp-typography-mono);
+  font-size: 1.35rem;
+  font-weight: 700;
+  word-break: break-all;
+  color: var(--dp-color-ink);
+}
+
+.target-status-msg {
+  font-size: 1.05rem;
+  color: #4b5870;
+}
+
+.gauge-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.gauge-svg-wrap {
+  position: relative;
+  width: 140px;
+  height: 140px;
+}
+
+.gauge-svg-wrap svg {
+  transform: rotate(-90deg);
+  width: 100%;
+  height: 100%;
+}
+
+.gauge-track {
+  fill: none;
+  stroke: #e2e8f0;
+  stroke-width: 10;
+}
+
+.gauge-value-arc {
+  fill: none;
+  stroke: var(--dp-color-accent);
+  stroke-width: 10;
+  stroke-linecap: round;
+  stroke-dasharray: 264;
+  stroke-dashoffset: 264;
+  transition: stroke-dashoffset 0.6s ease;
+}
+
+.gauge-text-center {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.gauge-score-digits {
+  font-family: var(--dp-typography-display);
+  font-size: 2.1rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.gauge-score-label {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #64748b;
+  text-transform: uppercase;
+}
+
+.confidence-chip {
+  font-family: var(--dp-typography-display);
+  font-size: 0.85rem;
+  font-weight: 800;
+  background: #f1f5f9;
+  border: var(--dp-border-detail-width) solid var(--dp-color-outline);
+  padding: 0.2rem 0.75rem;
+  border-radius: 9999px;
+  box-shadow: 2px 2px 0 var(--dp-color-outline);
+}
+
+.redirect-box {
+  margin-top: 1.5rem;
+  background: var(--dp-color-accent-warm);
+  border: var(--dp-border-outline-width) solid var(--dp-color-outline);
+  border-radius: var(--dp-radius-corner);
+  padding: 1rem 1.5rem;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  box-shadow: 3px 3px 0 var(--dp-color-outline);
+}
+
+.redirect-box.hidden {
+  display: none;
+}
+
+.telemetry-cards-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin: 2.5rem 0;
+}
+
+.tel-stat-card {
+  background: var(--dp-color-field-soft);
+  border: var(--dp-border-outline-width) solid var(--dp-color-outline);
+  border-radius: var(--dp-radius-corner);
+  padding: 1.35rem;
+  box-shadow: 3px 3px 0 var(--dp-color-outline);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.tel-label-text {
+  font-size: var(--dp-typography-metadata);
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #64748b;
+  letter-spacing: 0.05em;
+}
+
+.tel-val-text {
+  font-family: var(--dp-typography-display);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--dp-color-ink);
+  word-break: break-all;
+}
+
+.findings-panel {
+  background: #ffffff;
+  border: var(--dp-border-outline-width) solid var(--dp-color-outline);
+  border-radius: var(--dp-radius-corner);
+  padding: 1.75rem;
+  margin-bottom: 2rem;
+  box-shadow: 3px 3px 0 var(--dp-color-outline);
+}
+
+.findings-title {
+  font-family: var(--dp-typography-display);
+  font-size: 1.25rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+
+.findings-items-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.findings-items-list li {
+  font-size: 1rem;
+  color: #334155;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+}
+
+.findings-items-list li::before {
+  content: "•";
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: var(--dp-color-accent);
+  line-height: 1;
+}
+
+.feature-disclosure {
+  border: var(--dp-border-outline-width) solid var(--dp-color-outline);
+  border-radius: var(--dp-radius-corner);
+  background: #ffffff;
+  overflow: hidden;
+  box-shadow: 3px 3px 0 var(--dp-color-outline);
+}
+
+.feature-disclosure-summary {
+  padding: 1.1rem 1.5rem;
+  background: var(--dp-color-selection);
+  border-bottom: var(--dp-border-detail-width) solid var(--dp-color-outline);
+  font-family: var(--dp-typography-display);
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--dp-color-ink);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.table-responsive-wrap {
+  overflow-x: auto;
+}
+
+.clean-matrix-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.clean-matrix-table th {
+  background: #f8fafc;
+  border-bottom: var(--dp-border-detail-width) solid var(--dp-color-outline);
+  padding: 0.85rem 1.25rem;
+  text-align: left;
+  font-family: var(--dp-typography-display);
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--dp-color-outline);
+}
+
+.clean-matrix-table td {
+  padding: 0.85rem 1.25rem;
+  border-bottom: 1px solid #e2e8f0;
+  font-size: 0.95rem;
+}
+
+.clean-matrix-table code {
+  font-family: var(--dp-typography-mono);
+  font-weight: 700;
+  background: #f1f5f9;
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+}
+
+/* History Audit Log Card */
+.history-section-card {
+  background: #ffffff;
+  border: var(--dp-border-outline-width) solid var(--dp-color-outline);
+  border-radius: 36px;
+  box-shadow: var(--shadow-card);
+  padding: 3.5rem;
+  margin-top: 4rem;
+}
+
+.history-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.history-card-header h2 {
+  font-family: var(--dp-typography-display);
+  font-size: 1.85rem;
+  font-weight: 900;
+}
+
+.history-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.select-dropdown {
+  font-family: var(--dp-typography-reading);
+  font-size: 0.95rem;
+  font-weight: 700;
+  background: #ffffff;
+  border: var(--dp-border-detail-width) solid var(--dp-color-outline);
+  padding: 0.5rem 1.25rem;
+  border-radius: var(--dp-radius-corner);
+  box-shadow: 2px 2px 0 var(--dp-color-outline);
+  outline: none;
+  cursor: pointer;
+}
+
+.btn-danger-outline {
+  background: #fee2e2;
+  color: #991b1b;
+  border: var(--dp-border-detail-width) solid var(--dp-color-outline);
+  padding: 0.5rem 1.15rem;
+  border-radius: var(--dp-radius-corner);
+  font-family: var(--dp-typography-display);
+  font-size: 0.95rem;
+  font-weight: 800;
+  box-shadow: 2px 2px 0 var(--dp-color-outline);
+  cursor: pointer;
+}
+
+.history-table-grid {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: var(--dp-border-detail-width) solid var(--dp-color-outline);
+  border-radius: var(--dp-radius-corner);
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.history-table-grid th {
+  background: var(--dp-color-selection);
+  border-bottom: var(--dp-border-detail-width) solid var(--dp-color-outline);
+  padding: 1rem 1.15rem;
+  text-align: left;
+  font-family: var(--dp-typography-display);
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--dp-color-outline);
+  letter-spacing: -0.01em;
+}
+
+.history-table-grid td {
+  padding: 0.95rem 1.15rem;
+  border-bottom: 1px solid #e2e8f0;
+  font-size: 0.92rem;
+  color: var(--dp-color-ink);
+  vertical-align: middle;
+}
+
+.history-table-grid tr:last-child td {
+  border-bottom: none;
+}
+
+.history-table-grid tr:hover td {
+  background: rgba(241, 235, 255, 0.4);
+}
+
+/* Status Badges */
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-family: var(--dp-typography-display);
+  font-size: 0.8rem;
+  font-weight: 800;
+  border: 2px solid var(--dp-color-outline);
+  box-shadow: 2px 2px 0 var(--dp-color-outline);
+  line-height: 1.2;
+}
+
+.status-pill.safe {
+  background: var(--dp-color-mint);
+  color: var(--dp-color-ink);
+}
+
+.status-pill.safe::before {
+  content: "●";
+  color: #059669;
+  font-size: 0.85rem;
+}
+
+.status-pill.suspicious {
+  background: var(--dp-color-accent-amber);
+  color: var(--dp-color-ink);
+}
+
+.status-pill.suspicious::before {
+  content: "▲";
+  color: #b45309;
+  font-size: 0.75rem;
+}
+
+.status-pill.malicious {
+  background: var(--dp-color-accent-pink);
+  color: var(--dp-color-ink);
+}
+
+.status-pill.malicious::before {
+  content: "✖";
+  color: #991b1b;
+  font-size: 0.8rem;
+}
+
+/* Inspect Action Button - Playful Geometric Pill */
+.btn-link,
+.btn-inspect-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  background: #ffffff;
+  color: var(--dp-color-accent);
+  border: 2px solid var(--dp-color-outline);
+  border-radius: 12px;
+  padding: 0.38rem 0.95rem;
+  font-family: var(--dp-typography-display);
+  font-size: 0.85rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 2.5px 2.5px 0 var(--dp-color-outline);
+  transition: transform var(--dp-motion-interaction), box-shadow var(--dp-motion-interaction), background var(--dp-motion-interaction), color var(--dp-motion-interaction);
+  text-decoration: none;
+}
+
+.btn-link:hover,
+.btn-inspect-action:hover {
+  background: var(--dp-color-accent);
+  color: #ffffff;
+  transform: translate(-1px, -1px);
+  box-shadow: 3.5px 3.5px 0 var(--dp-color-outline);
+}
+
+.btn-link:active,
+.btn-inspect-action:active {
+  transform: translate(1.5px, 1.5px);
+  box-shadow: 1px 1px 0 var(--dp-color-outline);
+}
+
+.btn-link .inspect-arrow,
+.btn-inspect-action .inspect-arrow {
+  font-size: 0.95rem;
+  line-height: 1;
+  transition: transform var(--dp-motion-interaction);
+}
+
+.btn-link:hover .inspect-arrow,
+.btn-inspect-action:hover .inspect-arrow {
+  transform: translate(1px, -1px);
+}
+
+/* Table telemetry checks */
+.audit-check-ok {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: #d1fae5;
+  color: #065f46;
+  border: 1.5px solid var(--dp-color-outline);
+  border-radius: 50%;
+  font-weight: 900;
+  font-size: 0.8rem;
+}
+
+.audit-check-no {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: #fee2e2;
+  color: #991b1b;
+  border: 1.5px solid var(--dp-color-outline);
+  border-radius: 50%;
+  font-weight: 900;
+  font-size: 0.75rem;
+}
+
+.tag-badge {
+  display: inline-block;
+  padding: 0.2rem 0.65rem;
+  border-radius: 9999px;
+  font-family: var(--dp-typography-display);
+  font-size: 0.8rem;
+  font-weight: 800;
+  border: var(--dp-border-detail-width) solid var(--dp-color-outline);
+}
+
+/* ============================================================
+   9. MINT BACK-COVER SHAPE WITH INSET DARK SLATE FOOTER
+   Matches designprompts.dev:
+   Broad rounded top mint container (#9bf1cd), decorated with
+   authentic geometric confetti (violet 4-dot squircle, amber arch,
+   pink sparkle stars, amber teardrop), big closing statement,
+   and inset dark slate footer (#1a2234) with broad curved top!
+   ============================================================ */
+.backcover-outer-wrapper {
+  position: relative;
+  margin-top: 6rem;
+}
+
+/* Authentic Confetti Elements */
+.confetti-svg-squircle {
+  position: absolute;
+  top: -24px;
+  left: 60px;
+  width: 54px;
+  height: 54px;
+  background: var(--dp-color-accent);
+  border: var(--dp-border-outline-width) solid var(--dp-color-outline);
+  border-radius: 16px;
+  transform: rotate(-15deg);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  place-items: center;
+  padding: 8px;
+  box-shadow: 3px 3px 0 var(--dp-color-outline);
+  z-index: 10;
+}
+
+.confetti-dot {
+  width: 9px;
+  height: 9px;
+  background: #ffffff;
+  border-radius: 50%;
+}
+
+.confetti-amber-arch {
+  position: absolute;
+  top: -22px;
+  right: 80px;
+  width: 58px;
+  height: 58px;
+  background: var(--dp-color-accent-warm);
+  border: var(--dp-border-outline-width) solid var(--dp-color-outline);
+  border-top-left-radius: 29px;
+  border-top-right-radius: 29px;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  box-shadow: 3px 3px 0 var(--dp-color-outline);
+  transform: rotate(12deg);
+  z-index: 10;
+}
+
+.confetti-amber-teardrop {
+  position: absolute;
+  top: 180px;
+  left: -20px;
+  width: 48px;
+  height: 48px;
+  background: var(--dp-color-accent-warm);
+  border: var(--dp-border-outline-width) solid var(--dp-color-outline);
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  box-shadow: 3px 3px 0 var(--dp-color-outline);
+  z-index: 10;
+}
+
+.confetti-pink-star {
+  position: absolute;
+  top: 140px;
+  right: -15px;
+  font-size: 2.5rem;
+  color: var(--dp-color-accent-secondary);
+  z-index: 10;
+  user-select: none;
+}
+
+/* Mint Back-Cover Body */
+.mint-backcover-card {
+  background: var(--dp-color-accent-fresh);
+  border: var(--dp-border-outline-width) solid var(--dp-color-outline);
+  border-radius: 48px;
+  box-shadow: var(--shadow-card);
+  padding: 5rem 4rem 0; /* No bottom padding; footer insets seamlessly */
+  overflow: hidden;
+  position: relative;
+}
+
+.backcover-content-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 4rem;
+}
+
+.backcover-content-center h2 {
+  font-family: var(--dp-typography-display);
+  font-size: clamp(2.8rem, 4.8vw, 4.4rem);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  color: var(--dp-color-ink);
+  margin-bottom: 1.25rem;
+}
+
+.backcover-content-center p {
+  font-size: 1.2rem;
+  color: #2b3952;
+  margin-bottom: 2.25rem;
+  max-width: 620px;
+}
+
+.backcover-actions-row {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Academic Credits Inside Mint Back-Cover */
+.backcover-attribution-card {
+  background: #ffffff;
+  border: var(--dp-border-outline-width) solid var(--dp-color-outline);
+  border-radius: 28px;
+  padding: 2.5rem;
+  box-shadow: 4px 4px 0 var(--dp-color-outline);
+  margin: 0 auto 4rem;
+  max-width: 900px;
+}
+
+.attribution-header {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin-bottom: 1.75rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px dashed var(--dp-color-rule-muted);
+}
+
+.inst-avatar-badge {
+  width: 58px;
+  height: 58px;
+  background: var(--dp-color-field-soft);
+  border: var(--dp-border-outline-width) solid var(--dp-color-outline);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  box-shadow: 2px 2px 0 var(--dp-color-outline);
+}
+
+.inst-info-texts h3 {
+  font-family: var(--dp-typography-display);
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--dp-color-ink);
+}
+
+.inst-info-texts p {
+  font-size: 0.95rem;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.students-cards-pair {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.student-info-cell {
+  background: var(--dp-color-field-soft);
+  border: var(--dp-border-detail-width) solid var(--dp-color-outline);
+  border-radius: 18px;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1.15rem;
+  box-shadow: 2px 2px 0 var(--dp-color-outline);
+}
+
+.student-initials-badge {
+  width: 50px;
+  height: 50px;
+  background: var(--dp-color-accent);
+  color: #ffffff;
+  border: var(--dp-border-detail-width) solid var(--dp-color-outline);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--dp-typography-display);
+  font-size: 1.25rem;
+  font-weight: 900;
+  box-shadow: 2px 2px 0 var(--dp-color-outline);
+}
+
+.student-text-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.student-sub-role {
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #64748b;
+}
+
+.student-full-name {
+  font-family: var(--dp-typography-display);
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: var(--dp-color-ink);
+}
+
+.student-enrollment-id {
+  font-size: 0.9rem;
+  color: #334155;
+  font-weight: 600;
+}
+
+/* Inset Dark Slate Footer (#1a2234) with broad curved top (42px) */
+.inset-slate-footer {
+  background: #1a2234;
+  color: #f8fafc;
+  border-top: var(--dp-border-outline-width) solid var(--dp-color-outline);
+  border-top-left-radius: 42px;
+  border-top-right-radius: 42px;
+  padding: 3.5rem 3.5rem 2.5rem;
+  margin-left: -4rem;
+  margin-right: -4rem;
+}
+
+.footer-top-columns {
+  display: grid;
+  grid-template-columns: 1.5fr repeat(4, 1fr);
+  gap: 2.5rem;
+  margin-bottom: 3rem;
+}
+
+.footer-brand-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.footer-brand-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--dp-typography-display);
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: #ffffff;
+}
+
+.footer-brand-desc {
+  font-size: 0.95rem;
+  color: #94a3b8;
+  line-height: 1.6;
+  max-width: 280px;
+}
+
+.footer-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.footer-col h4 {
+  font-family: var(--dp-typography-display);
+  font-size: 1rem;
+  font-weight: 800;
+  color: #ffffff;
+  text-transform: capitalize;
+}
+
+.footer-col a {
+  text-decoration: none;
+  font-size: 0.9rem;
+  color: #94a3b8;
+  transition: color var(--dp-motion-interaction);
+}
+
+.footer-col a:hover {
+  color: #ffffff;
+}
+
+.footer-bottom-row {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 1.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: #64748b;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer-links-row {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.footer-links-row a {
+  text-decoration: none;
+  color: #94a3b8;
+}
+
+.footer-links-row a:hover {
+  color: #ffffff;
+}
+
+/* Utility Hidden Rule */
+.hidden,
+[hidden] {
+  display: none !important;
+}
+
+/* Toast Notification (Playful Geometric Floating Alert) */
+.toast-popup {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: #ffffff;
+  color: var(--dp-color-heading);
+  border: var(--dp-border-outline-width) solid var(--dp-color-outline);
+  padding: 0.9rem 1.6rem;
+  border-radius: var(--dp-radius-corner);
+  box-shadow: 4px 4px 0 var(--dp-color-outline);
+  font-family: var(--dp-typography-display);
+  font-weight: 800;
+  font-size: 0.95rem;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  pointer-events: auto;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.toast-popup.hidden {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transform: translateY(12px) !important;
+}
+
+/* ============================================================
+   8.5 FREQUENTLY ASKED QUESTIONS (FAQ SECTION)
+   Matches designprompts.dev:
+   Left col: "Frequently asked questions" + yellow question mark circle
+   Right col: Stack of rounded outlined accordions with + / - marks
+   ============================================================ */
+.faq-section {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 3.5rem;
+  align-items: flex-start;
+  margin-bottom: 5.5rem;
+  padding-top: 1rem;
+}
+
+.faq-header-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  position: sticky;
+  top: 6rem;
+}
+
+.faq-header-col h2 {
+  font-family: var(--dp-typography-display);
+  font-size: clamp(2.4rem, 4vw, 3.4rem);
+  font-weight: 900;
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+  color: var(--dp-color-ink);
+}
+
+.faq-header-col p {
+  font-size: 1.1rem;
+  color: #64748b;
+  line-height: 1.55;
+}
+
+.faq-question-badge {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  background: var(--dp-color-accent-warm);
+  border: var(--dp-border-outline-width) solid var(--dp-color-outline);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--dp-typography-display);
+  font-size: 4.8rem;
+  font-weight: 900;
+  color: var(--dp-color-outline);
+  box-shadow: 5px 5px 0 var(--dp-color-outline);
+  margin-top: 0.5rem;
+  user-select: none;
+}
+
+.faq-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.faq-details {
+  background: #ffffff;
+  border: var(--dp-border-outline-width) solid var(--dp-color-outline);
+  border-radius: 20px;
+  box-shadow: 4px 4px 0 var(--dp-color-outline);
+  transition: background var(--dp-motion-interaction), box-shadow var(--dp-motion-interaction);
+  overflow: hidden;
+}
+
+.faq-details:hover {
+  box-shadow: 6px 6px 0 var(--dp-color-outline);
+}
+
+.faq-details[open] {
+  background: var(--dp-color-field-soft);
+  box-shadow: 6px 6px 0 var(--dp-color-outline);
+}
+
+.faq-summary {
+  list-style: none;
+  padding: 1.35rem 1.75rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  font-family: var(--dp-typography-display);
+  font-size: 1.18rem;
+  font-weight: 800;
+  color: var(--dp-color-ink);
+  user-select: none;
+}
+
+.faq-summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-summary-text {
+  flex: 1;
+  line-height: 1.35;
+}
+
+.faq-toggle-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: var(--dp-border-detail-width) solid var(--dp-color-outline);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--dp-typography-display);
+  font-size: 1.35rem;
+  font-weight: 900;
+  color: var(--dp-color-outline);
+  box-shadow: 2px 2px 0 var(--dp-color-outline);
+  flex-shrink: 0;
+  transition: transform var(--dp-motion-interaction), background var(--dp-motion-interaction), color var(--dp-motion-interaction);
+}
+
+.faq-details[open] .faq-toggle-btn {
+  background: var(--dp-color-accent);
+  color: #ffffff;
+  transform: rotate(45deg);
+}
+
+.faq-answer-body {
+  padding: 0 1.75rem 1.65rem;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #2b3952;
+}
+
+.faq-answer-body p {
+  margin-bottom: 0.75rem;
+}
+
+.faq-answer-body p:last-child {
+  margin-bottom: 0;
+}
+
+.faq-answer-body strong {
+  color: var(--dp-color-ink);
+  font-weight: 700;
+}
+
+.faq-answer-body code {
+  font-family: var(--dp-typography-mono);
+  font-size: 0.9em;
+  font-weight: 700;
+  background: #ffffff;
+  border: 1px solid var(--dp-color-outline);
+  padding: 0.15rem 0.45rem;
+  border-radius: 6px;
+}
+
+/* ============================================================
+   RESPONSIVE DESIGN BREAKPOINTS
+   At 1100px: tighten wide grids.
+   At 760px: stack columns cleanly while preserving outlines.
+   ============================================================ */
+
+@media (max-width: 1100px) {
+  .hero-section {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  
+  .hero-shapes-assembly {
+    margin: 0 auto;
+  }
+
+  .book-features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .ticket-card {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .ticket-center-features {
+    border-left: none;
+    border-top: 1px dashed var(--dp-color-rule-muted);
+    padding-left: 0;
+    padding-top: 1.5rem;
+  }
+
+  .footer-top-columns {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .faq-section {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .faq-header-col {
+    position: static;
+  }
+}
+
+@media (max-width: 760px) {
+  .site-wrapper {
+    padding: 1rem 1rem 2rem;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .hero-title {
+    font-size: 2.8rem;
+  }
+
+  .hero-shapes-assembly {
+    height: 380px;
+  }
+
+  .assembly-canvas-box {
+    max-width: 360px;
+    height: 380px;
+  }
+
+  .assembly-violet-arch {
+    width: 150px;
+    height: 150px;
+  }
+
+  .assembly-mint-card {
+    width: 140px;
+    height: 120px;
+  }
+
+  .assembly-pink-card {
+    width: 140px;
+    height: 120px;
+  }
+
+  .assembly-yellow-circle {
+    width: 130px;
+    height: 130px;
+  }
+
+  .fact-strip-white-card {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .fact-item:not(:last-child)::after {
+    display: none;
+  }
+
+  .white-book-container {
+    padding: 2.5rem 1.5rem;
+  }
+
+  .book-features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .editorial-silhouette-row {
+    grid-template-columns: 1fr;
+  }
+
+  .process-horizontal-line {
+    display: none;
+  }
+
+  .process-steps-row {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+
+  .benefits-panel-section {
+    padding: 2.5rem 1.5rem;
+  }
+
+  .benefits-layout-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .benefits-items-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .comparison-section {
+    padding: 2.5rem 1.5rem;
+  }
+
+  .scanner-main-card {
+    padding: 2rem 1.25rem;
+  }
+
+  .search-bar-wrap {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0.5rem;
+  }
+
+  .btn-analyze-submit {
+    width: 100%;
+  }
+
+  .verdict-header-row {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .verdict-badge-box {
+    align-self: center;
+  }
+
+  .telemetry-cards-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .faq-section {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .faq-header-col {
+    position: static;
+  }
+
+  .faq-summary {
+    padding: 1.15rem 1.25rem;
+    font-size: 1.05rem;
+  }
+
+  .faq-answer-body {
+    padding: 0 1.25rem 1.35rem;
+    font-size: 0.95rem;
+  }
+
+  .mint-backcover-card {
+    padding: 3rem 1.5rem 0;
+  }
+
+  .students-cards-pair {
+    grid-template-columns: 1fr;
+  }
+
+  .inset-slate-footer {
+    margin-left: -1.5rem;
+    margin-right: -1.5rem;
+    padding: 2.5rem 1.5rem;
+  }
+
+  .footer-top-columns {
+    grid-template-columns: 1fr;
+  }
+}
