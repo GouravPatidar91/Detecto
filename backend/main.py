@@ -43,6 +43,19 @@ def serve_index():
         return FileResponse(index_file)
     return {"message": "Detecto API is active. Frontend is loading..."}
 
+@app.get("/health")
+@app.get("/api/health")
+def health_check():
+    """
+    Lightweight health check endpoint for external cronjobs (e.g., cron-job.org, UptimeRobot).
+    Keeps Render free tier instances awake without incurring database or ML overhead.
+    """
+    return {
+        "status": "healthy",
+        "service": "Detecto AI",
+        "timestamp": datetime.utcnow().isoformat()
+    }
+
 @app.post("/api/scan", response_model=ScanResponse)
 def scan_url(request: ScanRequest, db: Session = Depends(get_db)):
     raw_url = request.url.strip()

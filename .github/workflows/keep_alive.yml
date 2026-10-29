@@ -1,0 +1,27 @@
+name: Render Keep-Alive Cron
+
+on:
+  schedule:
+    # Triggered every 5 minutes (fastest cron interval supported by GitHub Actions)
+    - cron: '*/5 * * * *'
+  workflow_dispatch: # Allows manual trigger from GitHub Actions tab
+
+jobs:
+  ping-render:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Detecto Health Endpoint Every 50 Seconds
+        run: |
+          TARGET_URL="${{ secrets.RENDER_APP_URL || 'https://detecto-b1fy.onrender.com' }}/health"
+          echo "Target Health Endpoint: $TARGET_URL"
+          echo "Starting 50-second interval keep-alive loop..."
+
+          # Run 6 pings spaced 50 seconds apart to cover the 5-minute interval
+          for i in {1..6}; do
+            echo "[$(date -u +%T)] Sending keep-alive ping #$i..."
+            curl -s -f -m 15 "$TARGET_URL" || echo "[$(date -u +%T)] Ping dispatched."
+            if [ $i -lt 6 ]; then
+              sleep 50
+            fi
+          done
+          echo "Keep-alive cycle finished successfully."
